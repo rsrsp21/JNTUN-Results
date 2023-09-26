@@ -385,39 +385,60 @@ function displayResults() {
   idContainer.innerHTML = '';
 
   var idHeading = document.createElement('h3');
-  idHeading.innerHTML = '<span style="color: black; font-weight: bold">Roll Number: </span><span style="color: red; font-weight: bold">' + studentId + '</span>';
+  idHeading.innerHTML =
+    '<span style="color: black; font-weight: bold">Roll Number: </span><span style="color: red; font-weight: bold">' +
+    studentId +
+    '</span>';
   idContainer.appendChild(idHeading);
 
   var tableContainer = document.getElementById('table-container');
-tableContainer.innerHTML = '';
+  tableContainer.innerHTML = '';
 
-var table = document.createElement('table');
-tableContainer.appendChild(table);
+  var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
+  var supplementaryContainer = document.getElementById('supplementary-container');
+  supplementaryContainer.innerHTML = '';
 
-var tableHeader = document.createElement('thead');
-table.appendChild(tableHeader);
+  var supplementaryRow = document.createElement('div');
+  supplementaryRow.style.fontWeight = 'bold';
+  supplementaryRow.style.color = 'blue';
+  supplementaryRow.textContent = 'Supplementary Appearances: ';
 
-var headerRow = document.createElement('tr');
-tableHeader.appendChild(headerRow);
+  var supplementaryValue = document.createElement('span');
+  supplementaryValue.style.fontWeight = 'bold';
+  supplementaryValue.style.color = 'black';
+  supplementaryValue.textContent =
+    supplementaryAppearances === '' ? 'NA' : supplementaryAppearances;
 
-var semestersHeader = document.createElement('th');
-semestersHeader.textContent = "Semesters";
-headerRow.appendChild(semestersHeader);
+  supplementaryRow.appendChild(supplementaryValue);
+  supplementaryContainer.appendChild(supplementaryRow);
 
-var sgpaHeader = document.createElement('th');
-sgpaHeader.textContent = "SGPA";
-headerRow.appendChild(sgpaHeader);
+  var table = document.createElement('table');
+  tableContainer.appendChild(table);
 
-var creditsHeader = document.createElement('th');
+  var tableHeader = document.createElement('thead');
+  table.appendChild(tableHeader);
+
+  var headerRow = document.createElement('tr');
+  tableHeader.appendChild(headerRow);
+
+  var semestersHeader = document.createElement('th');
+  semestersHeader.textContent = 'Semesters';
+  headerRow.appendChild(semestersHeader);
+
+  var sgpaHeader = document.createElement('th');
+  sgpaHeader.textContent = 'SGPA';
+  headerRow.appendChild(sgpaHeader);
+
+  var creditsHeader = document.createElement('th');
   creditsHeader.textContent = 'Credits'; // Added Credits column header
   headerRow.appendChild(creditsHeader);
 
-var tableBody = document.createElement('tbody');
-table.appendChild(tableBody);
+  var tableBody = document.createElement('tbody');
+  table.appendChild(tableBody);
 
   var keys = Object.keys(studentData[0]);
   keys.forEach(function (key) {
-    if (key !== 'ID' && key !== 'CGPA') {
+    if (key !== 'ID' && key !== 'CGPA' && key !== 'Supplementary Appearances') {
       var row = document.createElement('tr');
       var labelCell = document.createElement('td');
       labelCell.textContent = key;
@@ -426,11 +447,6 @@ table.appendChild(tableBody);
 
       var valueCell = document.createElement('td');
       var value = studentData[0][key] === '' ? 'NA' : studentData[0][key];
-      if (key === 'Supplementary Appearances') {
-        labelCell.style.color = 'blue';
-        valueCell.style.fontWeight = 'bold';
-        valueCell.style.color = 'black';
-      }
       valueCell.textContent = value;
       row.appendChild(valueCell);
 
