@@ -434,13 +434,15 @@ function displayResults() {
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
 
-    sgpaHeader.colSpan = 2;
-        sgpaHeader.style.textAlign = 'center';
+    sgpaHeader.style.display = 'none';
         creditsHeader.style.display = 'none';
+        valueCell.colSpan = 2;
+        valueCell.style.textAlign = 'center';
       }
       valueCell.textContent = value;
       row.appendChild(valueCell);
 
+         if (key !== 'Supplementary Appearances') {
      var creditsCell = document.createElement('td');
       var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
     if (key === '1-1' && studentData[0][key] !== '') {
@@ -455,7 +457,7 @@ function displayResults() {
       }
       creditsCell.textContent = creditsValue;
       row.appendChild(creditsCell);
-
+    }
       tableBody.appendChild(row);
     }
   });
