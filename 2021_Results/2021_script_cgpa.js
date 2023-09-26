@@ -431,13 +431,17 @@ function displayResults() {
         labelCell.style.color = 'blue';
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
+     if (index === keys.length - 1) {
+        var sgpaCell = document.createElement('td');
+        sgpaCell.textContent = value;
+        sgpaCell.colSpan = 2;
+        sgpaCell.style.textAlign = 'center';
+        row.appendChild(sgpaCell);
+        valueCell.style.display = 'none';
       }
-      valueCell.textContent = value;
-      row.appendChild(valueCell);
-
-      if (key !== 'Supplementary Appearances') {
-        var creditsCell = document.createElement('td');
-        var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
+    } else {
+      var creditsCell = document.createElement('td');
+     var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
       if (key === '1-1' && studentData[0][key] !== '') {
           creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
       }   
@@ -451,7 +455,8 @@ function displayResults() {
         creditsCell.textContent = creditsValue;
         row.appendChild(creditsCell);
       }
-
+       valueCell.textContent = value;
+    row.appendChild(valueCell);
       tableBody.appendChild(row);
     }
   });
