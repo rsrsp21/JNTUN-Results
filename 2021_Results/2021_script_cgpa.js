@@ -420,7 +420,7 @@ function displayResults() {
 
   var keys = Object.keys(studentData[0]);
   keys.forEach(function (key) {
-    if (key !== 'ID' && key !== 'CGPA' && key !== 'Supplementary Appearances') {
+    if (key !== 'ID' && key !== 'CGPA') {
       var row = document.createElement('tr');
       var labelCell = document.createElement('td');
       labelCell.textContent = key;
@@ -429,10 +429,15 @@ function displayResults() {
 
       var valueCell = document.createElement('td');
       var value = studentData[0][key] === '' ? 'NA' : studentData[0][key];
+      if (key === 'Supplementary Appearances') {
+        labelCell.style.color = 'blue';
+        valueCell.style.fontWeight = 'bold';
+        valueCell.style.color = 'black';
+      }
       valueCell.textContent = value;
       row.appendChild(valueCell);
 
-    var creditsCell = document.createElement('td');
+     var creditsCell = document.createElement('td');
       var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
     if (key === '1-1' && studentData[0][key] !== '') {
         creditsValue = '19.5';
@@ -450,25 +455,7 @@ function displayResults() {
       tableBody.appendChild(row);
     }
   });
-
-  var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
-  var supplementaryContainer = document.getElementById('supplementary-container');
-  supplementaryContainer.innerHTML = '';
-
-  var supplementaryRow = document.createElement('div');
-  supplementaryRow.style.fontWeight = 'bold';
-  supplementaryRow.style.color = 'blue';
-  supplementaryRow.textContent = 'Supplementary Appearances: ';
-
-  var supplementaryValue = document.createElement('span');
-  supplementaryValue.style.fontWeight = 'bold';
-  supplementaryValue.style.color = 'black';
-  supplementaryValue.textContent =
-    supplementaryAppearances === '' ? 'NA' : supplementaryAppearances;
-
-  supplementaryRow.appendChild(supplementaryValue);
-  supplementaryContainer.appendChild(supplementaryRow);
-
+    
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
 
