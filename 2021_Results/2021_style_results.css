@@ -165,6 +165,7 @@ tr:hover td {
   button,
   .print-button,
   .footer,
+.supplementary-message,
   .cgpa-buttons {
     display: none;
   }
