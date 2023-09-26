@@ -461,14 +461,6 @@ function displayResults() {
     }
   });
 
-  // Merge SGPA and Credits cells for Supplementary Appearances in the last row
-  var lastRow = table.rows[table.rows.length - 1];
-  var sgpaCell = lastRow.cells[1];
-  var creditsCell = lastRow.cells[2];
-  sgpaCell.colSpan = 2;
-  sgpaCell.style.textAlign = 'center';
-  creditsCell.style.display = 'none';
-
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
 
