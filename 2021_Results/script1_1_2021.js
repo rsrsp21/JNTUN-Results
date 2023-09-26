@@ -2058,6 +2058,7 @@ var studentId = document.getElementById('student-id').value.trim();
   sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
 
   var supplementaryResult = document.createElement('p');
+supplementaryResult.className = 'supplementary-message';
   if (sgpa === 'Fail') {
     supplementaryResult.innerHTML = '<span style="color: blue;">Better luck next time!</span>';
   } else if (clearedSupplementaryIDs.includes(studentId)) {
