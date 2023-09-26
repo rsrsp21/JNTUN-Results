@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CGPA Score (2021-25)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="2021_style_cgpa.css">
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <a href="https://jntunresultsr20.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
+    </div>
+    <div class="separator"></div>
+    <h1>CGPA Score (2021-25)</h1>
+    <h2>(Cumulative Grade Points Average Score)</h2>
+    <div class="blink-notice">
+      <span class="blink">*** 2-1 (Suppl.) Results are Updated. ***</span>
+    </div>
+    <div class="separator"></div>
+    <label for="student-id">Enter Roll Number:</label>
+    <br>
+    <input type="text" id="student-id">
+    <br>
+    <button onclick="displayResults()">View CGPA</button>
+    <br>
+    <div align="center" id="id-container"></div><br>
+    <div id="table-container"></div><br>
+    <div id="cgpa-container"></div>
+    <div align="center" id="message-container"></div><br>
+    <div class="blink-notice">
+      <span class="blink">Note:<br>No. of * indicates Number of Supplementary Appearances.<br>NA indicates Not Applicable.</span>
+    </div>
+    <div class="print-button">
+      <button onclick="printResults()">Print</button>
+    </div><br>
+    <div>
+      <button onclick="location.href='2021_Portal.html';">Back to home</button>
+    </div><br>
+    <div class="complain">
+      <p align='center'><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p>
+    </div>
+    <div class="footer">
+      <p>&copy; Created By Sri Ram Sai Pavan Relangi, 2023</p>
+    </div>
+  </div>
+  <script src="2021_script_cgpa.js"></script>
+</body>
+</html>

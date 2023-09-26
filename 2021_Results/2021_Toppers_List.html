@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toppers List (2021-25)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px
+}
+
+.table-container {
+    margin-bottom: 50px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed; /* Added this line to enforce fixed layout */
+  margin: 0 auto; /* Center the table within the container */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+    th,
+    td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #dddddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    td {
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover td {
+      background-color: #ebebeb;
+    }
+.separator {
+      border-top: 1px solid #dddddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+button {
+      display: block;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      width: 300px; /* Adjust the width as desired */
+      margin: 0 auto; /* Center the element horizontally */
+    }
+
+    button {
+      background-color: maroon;
+      color: #ffffff;
+      cursor: pointer;
+    }
+.footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #dddddd;
+    }
+/*@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        margin: 20px;
+        padding: 10px;
+    }*/
+
+    h1 {
+        font-size: 30px;
+    }
+}
+    </style>
+    <script>
+        // CSV data variables
+        var csvDataOverall = `
+            ID,CGPA
+21031A0552,9.21
+21031A0537,9.18
+21031A0534,9.13
+22035A0106,9
+21031A0561,8.94
+21031A0423,8.84
+22035A0316,8.81
+21031A0502,8.79
+22035A0331,8.77
+22035A0303,8.76
+        `;
+        
+        var csvDataCE = `
+            ID,CGPA
+22035A0106,9
+22035A0130,8.66
+22035A0117,8.4
+22035A0101,8.34
+22035A0125,8.29
+22035A0129,8.24
+22035A0121,8.2
+22035A0102,8.19
+21031A0104,8.12
+22035A0113,7.93
+        `;
+var csvDataEEE = `
+            ID,CGPA
+22035A0217,8.67
+22035A0226,8.52
+22035A0211,8.25
+21031A0205,8.22
+22035A0215,8.15
+22035A0205,8.14
+21031A0206,8.13
+22035A0221,8.1
+22035A0201,8.09
+22035A0210,8
+        `;
+var csvDataMEC = `
+            ID,CGPA
+22035A0316,8.81
+22035A0331,8.77
+22035A0303,8.76
+22035A0319,8.66
+21031A0323,8.64
+22035A0314,8.56
+22035A0318,8.53
+22035A0322,8.52
+22035A0321,8.45
+22035A0310,8.3
+        `;
+var csvDataECE = `
+            ID,CGPA
+21031A0423,8.84
+22035A0402,8.59
+21031A0447,8.5
+22035A0404,8.39
+21031A0410,8.31
+22035A0409,8.29
+22035A0401,8.27
+21031A0427,7.99
+21031A0441,7.98
+22035A0405,7.97
+        `;
+var csvDataCSE = `
+            ID,CGPA
+21031A0552,9.21
+21031A0537,9.18
+21031A0534,9.13
+21031A0561,8.94
+21031A0502,8.79
+21031A0522,8.72
+21031A0546,8.52
+21031A0548,8.51
+21031A0532,8.46
+21031A0533,8.44
+        `;
+        
+        // Function to parse and populate table from CSV data
+        function populateTableFromCSV(tableId, csvData) {
+            var rows = csvData.trim().split('\n');
+            var tableBody = document.querySelector('#' + tableId + ' tbody');
+            for (var i = 1; i < rows.length; i++) {
+                var rowData = rows[i].split(',');
+                var rowHtml = '<tr>';
+                for (var j = 0; j < rowData.length; j++) {
+                    rowHtml += '<td>' + rowData[j] + '</td>';
+                }
+                rowHtml += '</tr>';
+                tableBody.innerHTML += rowHtml;
+            }
+        }
+        
+        // Call the function to populate the tables
+        window.onload = function() {
+            populateTableFromCSV('overall-toppers', csvDataOverall);
+            populateTableFromCSV('CE-toppers', csvDataCE);
+populateTableFromCSV('EEE-toppers', csvDataEEE);
+populateTableFromCSV('MEC-toppers', csvDataMEC);
+populateTableFromCSV('ECE-toppers', csvDataECE);
+populateTableFromCSV('CSE-toppers', csvDataCSE);
+            // Repeat the above line for other tables and CSV data
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+<div class="logo">
+      <a href="https://jntunresultsr20.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
+    </div>
+    <!--<h1 class="university-name">University Name</h1>-->
+    <div class="separator"></div>
+        <h1><b>Toppers List (2021-25)</b></h1>
+<h2><b>(Upto 2-1)</b></h2>
+    <div class="separator"></div>
+        <div class="table-container">
+            <h2><b>All Branches (Overall)</b></h2>
+            <table id="overall-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="table-container">
+            <h2><b>Civil Engineering</b></h2>
+            <table id="CE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Electrical and Electronic Engineering</b></h2>
+            <table id="EEE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Mechanical Engineering</b></h2>
+            <table id="MEC-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Electronics and Communication Engineering</b></h2>
+            <table id="ECE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Computer Science Engineering</b></h2>
+            <table id="CSE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Repeat the above HTML code for other tables -->
+	 <div>
+      <button onclick="location.href='2021_Portal.html';">Back to home</button>
+    </div><br>
+
+ <div class="footer">
+      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
+    </div>
+</div>
+</body>
+</html>
