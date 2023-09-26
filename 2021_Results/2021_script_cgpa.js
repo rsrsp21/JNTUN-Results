@@ -433,6 +433,10 @@ function displayResults() {
         labelCell.style.color = 'blue';
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
+
+    sgpaHeader.colSpan = 2;
+        sgpaHeader.style.textAlign = 'center';
+        creditsHeader.style.display = 'none';
       }
       valueCell.textContent = value;
       row.appendChild(valueCell);
