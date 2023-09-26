@@ -431,7 +431,8 @@ function displayResults() {
         labelCell.style.color = 'blue';
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
-     if var creditsCell = document.createElement('td');
+     if (index === keys.length - 1) {
+        var creditsCell = document.createElement('td');
         creditsCell.textContent = value;
         creditsCell.colSpan = 2;
         creditsCell.style.textAlign = 'center';
