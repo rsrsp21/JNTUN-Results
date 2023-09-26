@@ -408,6 +408,10 @@ var sgpaHeader = document.createElement('th');
 sgpaHeader.textContent = "SGPA";
 headerRow.appendChild(sgpaHeader);
 
+var creditsHeader = document.createElement('th');
+  creditsHeader.textContent = 'Credits'; // Added Credits column header
+  headerRow.appendChild(creditsHeader);
+
 var tableBody = document.createElement('tbody');
 table.appendChild(tableBody);
 
@@ -429,6 +433,21 @@ table.appendChild(tableBody);
       }
       valueCell.textContent = value;
       row.appendChild(valueCell);
+
+        var creditsCell = document.createElement('td');
+      var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
+    if (key === '1-1') {
+        creditsValue = '19.5';
+      }
+      else if (key === '1-2') {
+        creditsValue = '19.5';
+      } else if (key === '2-1') {
+        creditsValue = '23.5';
+      } else if (key === '2-2') {
+        creditsValue = '21.5';
+      }
+      creditsCell.textContent = creditsValue;
+      row.appendChild(creditsCell);
 
       tableBody.appendChild(row);
     }
