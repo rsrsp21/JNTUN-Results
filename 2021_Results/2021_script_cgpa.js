@@ -431,12 +431,11 @@ function displayResults() {
         labelCell.style.color = 'blue';
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
-     if (index === keys.length - 1) {
-        var sgpaCell = document.createElement('td');
-        sgpaCell.textContent = value;
-        sgpaCell.colSpan = 2;
-        sgpaCell.style.textAlign = 'center';
-        row.appendChild(sgpaCell);
+     if var creditsCell = document.createElement('td');
+        creditsCell.textContent = value;
+        creditsCell.colSpan = 2;
+        creditsCell.style.textAlign = 'center';
+        row.appendChild(creditsCell);
         valueCell.style.display = 'none';
       }
     } else {
