@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Semesterwise Results</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<link rel="stylesheet" href="semwise_styles.css">
+<body>
+  <div class="container">
+	  <div class="logo">
+      <a href="https://jntunresultsr20.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
+    </div>
+    <!--<h1 class="university-name">University Name</h1>-->
+    <div class="separator"></div>
+	  <h1>Semesterwise Results</h1>
+	  <h2>(2020 Admitted Onwards)</h2>
+	  <!--<div class="blink-notice">
+      <span class="blink">*** Supplementary Results are included. ***</span>
+    </div>-->
+ <div class="separator"></div>
+    <label for="student-id">Enter Roll Number:</label>
+	<input type="text" id="student-id">
+	<br>
+<div class="centered-dropdown">
+  <label for="semester-select">Select Semester:</label>
+  <select id="semester-select">
+    <option value="sem-1">1-1</option>
+    <option value="sem-2">1-2</option>
+    <option value="sem-3">2-1</option>
+<option value="sem-4">2-2</option>
+<option value="sem-6">3-2</option>
+    <!-- Add more semester options as needed -->
+  </select><br>
+<label for="year-select">Select Year of Admission:</label>
+<select id="year-select">
+<option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  <!-- Add more year options as needed -->
+</select>
+</div>
+    <button onclick="displayResults()">View Results</button>
+<br>
+<div id="id-container"><p></p></div>
+    <div class="results" id="results-container"></div>
+    <div class="sgpa" id="sgpa-container"></div><br>
+<button onclick="printResults()">Print</button>
+<div class="button-container">
+	<button class="action-button" onclick="location.href='https://jntunresultsr20.vercel.app/';">Back to home</button>
+      <button class="action-button" onclick="location.href='../index_maintain.html';">Check your CGPA</button>
+   </div><br>
+ <div class = 'complain' align = 'center'><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b>
+    </div>
+<div class="footer">
+      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
+    </div>
+  </div>
+<script src="semwise_script.js"></script>
+</body>
+</html>
