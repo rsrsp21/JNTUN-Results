@@ -433,11 +433,6 @@ function displayResults() {
         labelCell.style.color = 'blue';
         valueCell.style.fontWeight = 'bold';
         valueCell.style.color = 'black';
-
-    sgpaHeader.style.display = 'none';
-        creditsHeader.style.display = 'none';
-        valueCell.colSpan = 2;
-        valueCell.style.textAlign = 'center';
       }
       valueCell.textContent = value;
       row.appendChild(valueCell);
@@ -461,6 +456,12 @@ function displayResults() {
       tableBody.appendChild(row);
     }
   });
+var lastRow = table.rows[table.rows.length - 1];
+  var sgpaCell = lastRow.cells[1];
+  var creditsCell = lastRow.cells[2];
+  sgpaCell.colSpan = 2;
+  sgpaCell.style.textAlign = 'center';
+  creditsCell.style.display = 'none';
     
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
