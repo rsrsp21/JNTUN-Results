@@ -437,9 +437,9 @@ table.appendChild(tableBody);
         var creditsCell = document.createElement('td');
       var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
     if (key === '1-1') {
-        creditsValue = '19.5';
+        creditsValue = '19.5' && studentData[0][key] !== '';
       }
-      else if (key === '1-2') {
+      else if (key === '1-2' && studentData[0][key] !== '') {
         creditsValue = '19.5';
       } else if (key === '2-1') {
         creditsValue = '23.5';
