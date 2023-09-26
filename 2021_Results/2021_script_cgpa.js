@@ -394,24 +394,6 @@ function displayResults() {
   var tableContainer = document.getElementById('table-container');
   tableContainer.innerHTML = '';
 
-  var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
-  var supplementaryContainer = document.getElementById('supplementary-container');
-  supplementaryContainer.innerHTML = '';
-
-  var supplementaryRow = document.createElement('div');
-  supplementaryRow.style.fontWeight = 'bold';
-  supplementaryRow.style.color = 'blue';
-  supplementaryRow.textContent = 'Supplementary Appearances: ';
-
-  var supplementaryValue = document.createElement('span');
-  supplementaryValue.style.fontWeight = 'bold';
-  supplementaryValue.style.color = 'black';
-  supplementaryValue.textContent =
-    supplementaryAppearances === '' ? 'NA' : supplementaryAppearances;
-
-  supplementaryRow.appendChild(supplementaryValue);
-  supplementaryContainer.appendChild(supplementaryRow);
-
   var table = document.createElement('table');
   tableContainer.appendChild(table);
 
