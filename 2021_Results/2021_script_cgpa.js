@@ -468,7 +468,6 @@ function displayResults() {
 
   supplementaryRow.appendChild(supplementaryValue);
   supplementaryContainer.appendChild(supplementaryRow);
-}
 
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
