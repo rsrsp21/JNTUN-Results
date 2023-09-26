@@ -438,7 +438,10 @@ function displayResults() {
       if (key !== 'Supplementary Appearances') {
         var creditsCell = document.createElement('td');
         var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
-        if (key === '1-2' && studentData[0][key] !== '') {
+      if (key === '1-1' && studentData[0][key] !== '') {
+          creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
+      }   
+      else if (key === '1-2' && studentData[0][key] !== '') {
           creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
         } else if (key === '2-1') {
           creditsValue = '23.5';
