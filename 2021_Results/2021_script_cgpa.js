@@ -339,34 +339,32 @@ var csvData = `ID,1-1,1-2,2-1,2-2,CGPA,Supplementary Appearances
 22035A0509,,,0.0,0.0,0.0,*
 22035A0510,,,0.0,0.0,0.0,*`;
 
-    function parseCSV(csv) {
-    var lines = csv.split('\n');
-    var headers = lines[0].split(',');
+function parseCSV(csv) {
+  var lines = csv.split('\n');
+  var headers = lines[0].split(',');
 
-    var data = [];
-    for (var i = 1; i < lines.length; i++) {
-      var values = lines[i].split(',');
-      if (values.length === headers.length) {
-        var entry = {};
-        for (var j = 0; j < headers.length; j++) {
-          entry[headers[j].trim()] = values[j].trim();
-        }
-        data.push(entry);
+  var data = [];
+  for (var i = 1; i < lines.length; i++) {
+    var values = lines[i].split(',');
+    if (values.length === headers.length) {
+      var entry = {};
+      for (var j = 0; j < headers.length; j++) {
+        entry[headers[j].trim()] = values[j].trim();
       }
+      data.push(entry);
     }
-
-    return data;
   }
 
-  function getStudentData(id, data) {
-    var studentData = data.filter(function (entry) {
-      return entry.ID === id;
-    });
+  return data;
+}
 
-    return studentData;
-  }
+function getStudentData(id, data) {
+  var studentData = data.filter(function (entry) {
+    return entry.ID === id;
+  });
 
-var message = ''; // Declare the message variable outside the function
+  return studentData;
+}
 
 function displayResults() {
   var studentId = document.getElementById('student-id').value.trim();
@@ -419,7 +417,7 @@ function displayResults() {
   table.appendChild(tableBody);
 
   var keys = Object.keys(studentData[0]);
-  keys.forEach(function (key) {
+  keys.forEach(function (key, index) {
     if (key !== 'ID' && key !== 'CGPA') {
       var row = document.createElement('tr');
       var labelCell = document.createElement('td');
@@ -437,41 +435,46 @@ function displayResults() {
       valueCell.textContent = value;
       row.appendChild(valueCell);
 
-         if (key !== 'Supplementary Appearances') {
-     var creditsCell = document.createElement('td');
-      var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
-    if (key === '1-1' && studentData[0][key] !== '') {
-        creditsValue = '19.5';
+      if (key !== 'Supplementary Appearances') {
+        var creditsCell = document.createElement('td');
+        var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
+        if (key === '1-2' && studentData[0][key] !== '') {
+          creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
+        } else if (key === '2-1') {
+          creditsValue = '23.5';
+        } else if (key === '2-2') {
+          creditsValue = '21.5';
+        }
+        creditsCell.textContent = creditsValue;
+        row.appendChild(creditsCell);
       }
-      else if (key === '1-2' && studentData[0][key] !== '') {
-        creditsValue = '19.5';
-      } else if (key === '2-1') {
-        creditsValue = '23.5';
-      } else if (key === '2-2') {
-        creditsValue = '21.5';
-      }
-      creditsCell.textContent = creditsValue;
-      row.appendChild(creditsCell);
-    }
+
       tableBody.appendChild(row);
     }
   });
-var lastRow = table.rows[table.rows.length - 1];
+
+  // Merge SGPA and Credits cells for Supplementary Appearances in the last row
+  var lastRow = table.rows[table.rows.length - 1];
   var sgpaCell = lastRow.cells[1];
   var creditsCell = lastRow.cells[2];
   sgpaCell.colSpan = 2;
   sgpaCell.style.textAlign = 'center';
   creditsCell.style.display = 'none';
-    
+
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
 
   var cgpaHeading = document.createElement('h2');
-  cgpaHeading.innerHTML = '<span style="color: black; font-weight: bold">CGPA : </span><span style="color: red; font-weight: bold">' + studentData[0]['CGPA'] + '</span>';
+  cgpaHeading.innerHTML =
+    '<span style="color: black; font-weight: bold">CGPA : </span><span style="color: red; font-weight: bold">' +
+    studentData[0]['CGPA'] +
+    '</span>';
   cgpaContainer.appendChild(cgpaHeading);
 
   var cgpa = parseFloat(studentData[0]['CGPA']);
   var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
+
+  var message = ''; // Declare the message variable
 
   if (cgpa >= 7.75 && (supplementaryAppearances === 'NA' || supplementaryAppearances === '')) {
     message = 'First Class with Distinction';
@@ -497,22 +500,22 @@ var lastRow = table.rows[table.rows.length - 1];
   }
 }
 
-  function handleKeyPress(event) {
-    if (event.keyCode === 13) {
-      // 13 represents the Enter key
-      displayResults();
-    }
+function handleKeyPress(event) {
+  if (event.keyCode === 13) {
+    // 13 represents the Enter key
+    displayResults();
   }
+}
 
-  // Add event listener to input element
-  document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
+// Add event listener to input element
+document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
 
-  function printResults() {
-var printContents = document.querySelector('.container').innerHTML;
-var originalContents = document.body.innerHTML;
+function printResults() {
+  var printContents = document.querySelector('.container').innerHTML;
+  var originalContents = document.body.innerHTML;
 
-document.body.innerHTML = printContents;
-window.print();
+  document.body.innerHTML = printContents;
+  window.print();
 
-document.body.innerHTML = originalContents;
+  document.body.innerHTML = originalContents;
 }
