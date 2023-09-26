@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JNTUK UCEN Results (R20 2020 Admitted Onwards)</title>
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.night-mode {
+  background-color: #333333;
+  color: #f4f4f4;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.container.night-mode {
+  background-color: #222222;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 700px;
+  height: auto;
+}
+
+.imp_list, .note_list {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.imp_list li, .note_list li {
+  margin-bottom: 10px;
+}
+
+.imp_list li a, .note_list li a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: green;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.note_list li a {
+  background-color: #990066;
+}
+
+.imp_list li a:hover, .note_list li a:hover {
+  background-color: #006400;
+}
+
+.note_list li a:hover {
+  background-color: #993366;
+}
+
+.new-indicator {
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+
+.new-notice {
+  text-align: center;
+  margin-bottom: 10px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.scroll-notice {
+  background-color: #f7f7f7;
+  padding: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #333333;
+  transition: color 0.3s ease;
+}
+
+.scroll-notice p {
+  animation: scroll-anim 12s linear infinite;
+  display: inline-block;
+}
+
+@keyframes scroll-anim {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.separator {
+  border-top: 1px solid #dddddd;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #dddddd;
+}
+
+/* Night Mode Styling */
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333333;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #444444;
+}
+
+body.night-mode button {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+body.night-mode button:hover {
+  background-color: #dddddd;
+}
+
+.scroll-notice.night-mode {
+  background-color: #333333;
+  color: #f4f4f4;
+}
+
+.scroll-notice.night-mode p {
+  color: #f4f4f4;
+}
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #dddddd;
+    }
+
+    @media (max-width: 700px) {
+      .logo img {
+        width: 375px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="logo">
+      <a href="https://jntunresultsr20.vercel.app/"><img src="images/logo.png" alt="University Logo"></a>
+    </div>
+    <div class="separator"></div>
+    <h1>R20 Results</h1>
+    <h2>(2020 Admitted Onwards)</h2>
+    <div class="scroll-notice">
+      <p><b>*** All results contain latest Supplementary & RC/RV results. ***</b></p>
+    </div>
+    <div class="separator"></div>
+    <!--<div class="new-notice">
+      <span class="blink"><b>Honors Text books for B.Tech (Honors) 1st Semester (CSE) are uploaded.</b></span>
+    </div>
+    <br>-->
+    <p align="center"><b><a href="files/JNTUN_Results.apk">Click here to Download the Mobile Web Application!<span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: 20px;"></span></a></b></p>
+    <br><div>
+      <ul class="imp_list">
+        <li><a href="2022_Results/2022_Portal.html">2022-26 Batch Results<br>(Updated upto 1-1)</a></li>
+        <li><a href="2021_Results/2021_Portal.html">2021-25 Batch Results<br>(Updated upto 2-2)</a></li>
+        <li><a href="2020_Results/2020_Portal.html">2020-24 Batch Results</a></li>
+      </ul>
+    </div>
+    <div>
+      <ul class="note_list">
+        <li><a href="Semesterwise_Results/semesterwise_results.html">Semesterwise Results<br>(All Years)</a></li>
+        <!--<li><a href="Honors_books/honors_books_cse.html">B.Tech. (Honors) Textbooks<br>(Only CSE)</a></li>-->
+      </ul>
+    </div>
+    <div>
+      <p align="center"><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p><br>
+    <p align = 'center'><button onclick="toggleNightMode()">Night Mode</button></p>
+    </div>
+    <div class="footer">
+      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
+    </div>
+  </div>
+  <script>
+    function toggleNightMode() {
+      document.body.classList.toggle('night-mode');
+      document.querySelector('.container').classList.toggle('night-mode');
+    }
+  </script>
+</body>
+</html>
+
