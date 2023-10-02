@@ -392,7 +392,7 @@ function displayResults() {
   var tableContainer = document.getElementById('table-container');
   tableContainer.innerHTML = '';
 
-  // Create the table
+// Create the table
 var table = document.createElement('table');
 tableContainer.appendChild(table);
 
@@ -446,7 +446,9 @@ keys.forEach(function (key, index) {
     } else {
       var sgpaCell = document.createElement('td');
       var sgpaValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
-      if (key === '1-2' && studentData[0][key] !== '') {
+      if (key === '1-1' && studentData[0][key] !== '') {
+        sgpaValue = studentData[0][key]; // Assign SGPA for 1-1 if it's not empty
+      } else if (key === '1-2' && studentData[0][key] !== '') {
         sgpaValue = studentData[0][key]; // Assign SGPA for 1-2 if it's not empty
       } else if (key === '2-1') {
         sgpaValue = studentData[0][key];
@@ -457,11 +459,9 @@ keys.forEach(function (key, index) {
       row.appendChild(sgpaCell);
 
       var creditsCell = document.createElement('td');
-      var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
-    if (key === '1-1' && studentData[0][key] !== '') {
-        creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
-      } else if (key === '1-2' && studentData[0][key] !== '') {
-        creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
+      var creditsValue = 'NA'; // Default to NA for semesters other than 1-1, 1-2, 2-1, and 2-2
+      if ((key === '1-1' || key === '1-2') && studentData[0][key] !== '') {
+        creditsValue = '19.5'; // Assign credits for 1-1 and 1-2 if SGPA is not empty
       } else if (key === '2-1') {
         creditsValue = '23.5';
       } else if (key === '2-2') {
@@ -474,7 +474,7 @@ keys.forEach(function (key, index) {
     tableBody.appendChild(row);
   }
 });
-
+  
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
 
