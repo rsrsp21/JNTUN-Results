@@ -392,74 +392,88 @@ function displayResults() {
   var tableContainer = document.getElementById('table-container');
   tableContainer.innerHTML = '';
 
-  var table = document.createElement('table');
-  tableContainer.appendChild(table);
+  // Create the table
+var table = document.createElement('table');
+tableContainer.appendChild(table);
 
-  var tableHeader = document.createElement('thead');
-  table.appendChild(tableHeader);
+// Create table header
+var tableHeader = document.createElement('thead');
+table.appendChild(tableHeader);
 
-  var headerRow = document.createElement('tr');
-  tableHeader.appendChild(headerRow);
+var headerRow = document.createElement('tr');
+tableHeader.appendChild(headerRow);
 
-  var semestersHeader = document.createElement('th');
-  semestersHeader.textContent = 'Semesters';
-  headerRow.appendChild(semestersHeader);
+var semestersHeader = document.createElement('th');
+semestersHeader.textContent = 'Semesters';
+headerRow.appendChild(semestersHeader);
 
-  var sgpaHeader = document.createElement('th');
-  sgpaHeader.textContent = 'SGPA';
-  headerRow.appendChild(sgpaHeader);
+var sgpaHeader = document.createElement('th');
+sgpaHeader.textContent = 'SGPA';
+headerRow.appendChild(sgpaHeader);
 
-  var creditsHeader = document.createElement('th');
-  creditsHeader.textContent = 'Credits'; // Added Credits column header
-  headerRow.appendChild(creditsHeader);
+var creditsHeader = document.createElement('th');
+creditsHeader.textContent = 'Credits';
+headerRow.appendChild(creditsHeader);
 
-  var tableBody = document.createElement('tbody');
-  table.appendChild(tableBody);
+// Create table body
+var tableBody = document.createElement('tbody');
+table.appendChild(tableBody);
 
-  var keys = Object.keys(studentData[0]);
-  keys.forEach(function (key, index) {
-    if (key !== 'ID' && key !== 'CGPA') {
-      var row = document.createElement('tr');
-      var labelCell = document.createElement('td');
-      labelCell.textContent = key;
-      labelCell.style.fontWeight = 'bold';
-      row.appendChild(labelCell);
+var keys = Object.keys(studentData[0]);
+keys.forEach(function (key, index) {
+  if (key !== 'ID' && key !== 'CGPA') {
+    var row = document.createElement('tr');
+    var labelCell = document.createElement('td');
+    labelCell.textContent = key;
+    labelCell.style.fontWeight = 'bold';
+    row.appendChild(labelCell);
 
-      var valueCell = document.createElement('td');
-      var value = studentData[0][key] === '' ? 'NA' : studentData[0][key];
-      if (key === 'Supplementary Appearances') {
-        labelCell.style.color = 'blue';
-        valueCell.style.fontWeight = 'bold';
-        valueCell.style.color = 'black';
-     if (index === keys.length - 1) {
-        var creditsCell = document.createElement('td');
-        creditsCell.textContent = value;
-        creditsCell.colSpan = 2;
-        creditsCell.style.textAlign = 'center';
-        row.appendChild(creditsCell);
+    var valueCell = document.createElement('td');
+    var value = studentData[0][key] === '' ? 'NA' : studentData[0][key];
+    if (key === 'Supplementary Appearances') {
+      labelCell.style.color = 'blue';
+      valueCell.style.fontWeight = 'bold';
+      valueCell.style.color = 'black';
+      // Merge SGPA and Credits cells for Supplementary Appearances in the last row
+      if (index === keys.length - 1) {
+        var sgpaCell = document.createElement('td');
+        sgpaCell.textContent = value;
+        sgpaCell.colSpan = 2;
+        sgpaCell.style.textAlign = 'center';
+        row.appendChild(sgpaCell);
         valueCell.style.display = 'none';
       }
     } else {
-      var creditsCell = document.createElement('td');
-     var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
-      if (key === '1-1' && studentData[0][key] !== '') {
-          creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
-      }   
-      else if (key === '1-2' && studentData[0][key] !== '') {
-          creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
-        } else if (key === '2-1') {
-          creditsValue = '23.5';
-        } else if (key === '2-2') {
-          creditsValue = '21.5';
-        }
-        creditsCell.textContent = creditsValue;
-        row.appendChild(creditsCell);
+      var sgpaCell = document.createElement('td');
+      var sgpaValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
+      if (key === '1-2' && studentData[0][key] !== '') {
+        sgpaValue = studentData[0][key]; // Assign SGPA for 1-2 if it's not empty
+      } else if (key === '2-1') {
+        sgpaValue = studentData[0][key];
+      } else if (key === '2-2') {
+        sgpaValue = studentData[0][key];
       }
-       valueCell.textContent = value;
-    row.appendChild(valueCell);
-      tableBody.appendChild(row);
+      sgpaCell.textContent = sgpaValue;
+      row.appendChild(sgpaCell);
+
+      var creditsCell = document.createElement('td');
+      var creditsValue = 'NA'; // Default to NA for semesters other than 1-2, 2-1, and 2-2
+    if (key === '1-1' && studentData[0][key] !== '') {
+        creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
+      } else if (key === '1-2' && studentData[0][key] !== '') {
+        creditsValue = '19.5'; // Assign credits for 1-2 if SGPA is not empty
+      } else if (key === '2-1') {
+        creditsValue = '23.5';
+      } else if (key === '2-2') {
+        creditsValue = '21.5';
+      }
+      creditsCell.textContent = creditsValue;
+      row.appendChild(creditsCell);
     }
-  });
+
+    tableBody.appendChild(row);
+  }
+});
 
   var cgpaContainer = document.getElementById('cgpa-container');
   cgpaContainer.innerHTML = '';
