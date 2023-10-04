@@ -140,7 +140,13 @@ h2 {
 #percentage-total-container > h3 {
     margin: 0 5px; /* Add a small margin to both sides of the elements within the container */
 }
-
+#cgpa-container {
+    border: 2px solid #000; /* Add a border to create an outline box for CGPA */
+    padding: 10px; /* Add padding for spacing inside the CGPA container */
+    text-align: center; /* Center-align the content in the CGPA container */
+    width: 200px; /* Set a fixed width for the CGPA container */
+    margin: 0 auto; /* Center the CGPA container horizontally on the page */
+}
    .footer {
       text-align: center;
       margin-top: 20px;
