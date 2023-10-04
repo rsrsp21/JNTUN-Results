@@ -476,6 +476,14 @@ function displayResults() {
         messageElement.style.fontWeight = 'bold';
         messageContainer.appendChild(messageElement);
     }
+ var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
+
+var supplementaryContainer = document.getElementById('supplementary-container');
+supplementaryContainer.innerHTML = '';
+
+var supplementaryHeading = document.createElement('h3');
+supplementaryHeading.innerHTML = '<span style="color: blue; font-weight: bold">Supplementary Appearances: </span><span style="color: black; font-weight: bold">' + supplementaryAppearances + '</span>';
+supplementaryContainer.appendChild(supplementaryHeading);
 }
 
 function handleKeyPress(event) {
