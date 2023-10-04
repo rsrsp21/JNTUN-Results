@@ -476,24 +476,39 @@ function displayResults() {
         messageElement.style.fontWeight = 'bold';
         messageContainer.appendChild(messageElement);
     }
- // Percentage
-var percentageContainer = document.getElementById('percentage-container');
-percentageContainer.innerHTML = '';
+ // Percentage and Total Credits Container
+    var percentageTotalContainer = document.getElementById('percentage-total-container');
+    percentageTotalContainer.innerHTML = '';
 
-var percentageHeading = document.createElement('h3');
-percentageHeading.style.color = 'black';
-percentageHeading.style.fontWeight = 'bold';
-percentageHeading.textContent = 'Percentage: ';
+    // Percentage
+    var percentageHeading = document.createElement('h3');
+    percentageHeading.style.color = 'black';
+    percentageHeading.style.fontWeight = 'bold';
+    percentageHeading.textContent = 'Percentage: ';
 
-var cgpaValue = parseFloat(studentData[0]['CGPA']);
-var percentageValue = document.createElement('span');
-percentageValue.style.color = 'red';
-percentageValue.style.fontWeight = 'bold';
-var percentage = ((cgpaValue - 0.75) * 10).toFixed(2);
-percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
+    var cgpaValue = parseFloat(studentData[0]['CGPA']);
+    var percentageValue = document.createElement('span');
+    percentageValue.style.color = 'red';
+    percentageValue.style.fontWeight = 'bold';
+    var percentage = ((cgpaValue - 0.75) * 10).toFixed(2);
+    percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
 
-percentageHeading.appendChild(percentageValue);
-percentageContainer.appendChild(percentageHeading);
+    percentageHeading.appendChild(percentageValue);
+    percentageTotalContainer.appendChild(percentageHeading);
+
+    // Total Credits Obtained
+    var totalCreditsHeading = document.createElement('h3');
+    totalCreditsHeading.style.color = 'black';
+    totalCreditsHeading.style.fontWeight = 'bold';
+    totalCreditsHeading.textContent = 'Total Credits Obtained: ';
+
+    var totalCreditsValue = document.createElement('span');
+    totalCreditsValue.style.color = 'red';
+    totalCreditsValue.style.fontWeight = 'bold';
+    totalCreditsValue.textContent = studentData[0]['Total Credits']; // Assuming this is the field name in your CSV
+
+    totalCreditsHeading.appendChild(totalCreditsValue);
+    percentageTotalContainer.appendChild(totalCreditsHeading);
  
 var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
 var supplementaryContainer = document.getElementById('supplementary-container');
