@@ -476,6 +476,24 @@ function displayResults() {
         messageElement.style.fontWeight = 'bold';
         messageContainer.appendChild(messageElement);
     }
+ // Percentage
+    var percentageContainer = document.getElementById('percentage-container');
+    percentageContainer.innerHTML = '';
+
+    var percentageHeading = document.createElement('h3');
+    percentageHeading.style.color = 'black';
+    percentageHeading.style.fontWeight = 'bold';
+    percentageHeading.textContent = 'Percentage: ';
+
+    var cgpaValue = parseFloat(studentData[0]['CGPA']);
+    var percentageValue = document.createElement('span');
+    percentageValue.style.color = 'red';
+    percentageValue.style.fontWeight = 'bold';
+    percentageValue.textContent = ((cgpaValue - 0.75) * 10).toFixed(2);
+
+    percentageHeading.appendChild(percentageValue);
+    percentageContainer.appendChild(percentageHeading);
+ 
 var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
 var supplementaryContainer = document.getElementById('supplementary-container');
 supplementaryContainer.innerHTML = '';
