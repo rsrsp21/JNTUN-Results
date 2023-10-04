@@ -417,7 +417,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
 
             var keys = Object.keys(studentData[0]);
             keys.forEach(function (key) {
-                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Total')) {
+                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Total') && key !== 'Supplementary Appearances') {
                     var row = document.createElement('tr');
                     
                     // Semester label
