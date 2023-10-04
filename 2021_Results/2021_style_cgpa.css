@@ -133,9 +133,12 @@ h2 {
     }
 #percentage-total-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Align the content horizontally to the center */
     align-items: center;
-    margin-right: 5px;
+}
+
+#percentage-total-container > h3 {
+    margin: 0 5px; /* Add a small margin to both sides of the elements within the container */
 }
 
    .footer {
