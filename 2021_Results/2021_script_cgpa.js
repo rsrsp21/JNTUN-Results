@@ -339,7 +339,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
 22035A0509,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*
 22035A0510,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*`;
 
-    function parseCSV(csv) {
+      function parseCSV(csv) {
             var lines = csv.split('\n');
             var headers = lines[0].split(',');
 
