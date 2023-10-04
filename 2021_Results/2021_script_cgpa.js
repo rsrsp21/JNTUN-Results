@@ -481,13 +481,13 @@ var percentageContainer = document.getElementById('percentage-container');
 percentageContainer.innerHTML = '';
 
 var percentageHeading = document.createElement('h3');
-percentageHeading.style.color = 'blue';
+percentageHeading.style.color = 'black';
 percentageHeading.style.fontWeight = 'bold';
 percentageHeading.textContent = 'Percentage: ';
 
 var cgpaValue = parseFloat(studentData[0]['CGPA']);
 var percentageValue = document.createElement('span');
-percentageValue.style.color = 'black';
+percentageValue.style.color = 'red';
 percentageValue.style.fontWeight = 'bold';
 var percentage = ((cgpaValue - 0.75) * 10).toFixed(2);
 percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
