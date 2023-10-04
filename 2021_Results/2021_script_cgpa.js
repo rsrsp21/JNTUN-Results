@@ -408,18 +408,12 @@ function parseCSV(csv) {
             sgpaHeader.textContent = "SGPA";
             headerRow.appendChild(sgpaHeader);
 
-            var creditsHeader = document.createElement('th'); // Add credits header
-            creditsHeader.textContent = "Credits";
-            headerRow.appendChild(creditsHeader);
-
             var tableBody = document.createElement('tbody');
             table.appendChild(tableBody);
 
-            var totalCredits = 0; // Initialize total credits to zero
-
             var keys = Object.keys(studentData[0]);
             keys.forEach(function (key) {
-                if (key !== 'ID' && key !== 'CGPA') {
+                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Credits')) {
                     var row = document.createElement('tr');
                     var labelCell = document.createElement('td');
                     labelCell.textContent = key;
@@ -436,29 +430,19 @@ function parseCSV(csv) {
                     valueCell.textContent = value;
                     row.appendChild(valueCell);
 
-                    if (key.includes('Credits')) { // Check if the key contains 'Credits'
-                        var creditsKey = key.replace('Credits_', ''); // Remove 'Credits_' prefix
-                        var creditsValue = studentData[0][key]; // Get the credits value
+                    // Find the corresponding Credits key
+                    var creditsKey = key.replace('-', '_'); // Replace '-' with '_'
+                    creditsKey = 'Credits_' + creditsKey; // Add 'Credits_' prefix
+                    var creditsValue = studentData[0][creditsKey]; // Get the credits value
 
-                        // Create a cell for displaying the credits for the corresponding semester
-                        var creditsCell = document.createElement('td');
-                        creditsCell.textContent = creditsValue;
-                        row.appendChild(creditsCell);
-
-                        totalCredits += parseFloat(creditsValue); // Add credits to totalCredits
-                    }
+                    // Create a cell for displaying the credits for the corresponding semester
+                    var creditsCell = document.createElement('td');
+                    creditsCell.textContent = creditsValue;
+                    row.appendChild(creditsCell);
 
                     tableBody.appendChild(row);
                 }
             });
-
-            // Display total credits obtained below CGPA
-            var totalCreditsContainer = document.getElementById('total-credits-container');
-            totalCreditsContainer.innerHTML = '';
-
-            var totalCreditsElement = document.createElement('p');
-            totalCreditsElement.innerHTML = '<span style="color: black; font-weight: bold">Total Credits Obtained: </span><span style="color: red; font-weight: bold">' + totalCredits + '</span>';
-            totalCreditsContainer.appendChild(totalCreditsElement);
 
             var cgpaContainer = document.getElementById('cgpa-container');
             cgpaContainer.innerHTML = '';
