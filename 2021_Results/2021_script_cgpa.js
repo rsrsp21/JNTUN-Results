@@ -490,6 +490,7 @@ function displayResults() {
     percentageValue.style.color = 'red';
     percentageValue.style.fontWeight = 'bold';
     percentageValue.textContent = ((cgpaValue - 0.75) * 10).toFixed(2);
+  percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
 
     percentageHeading.appendChild(percentageValue);
     percentageContainer.appendChild(percentageHeading);
