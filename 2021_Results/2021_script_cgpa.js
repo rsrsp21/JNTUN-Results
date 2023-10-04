@@ -477,23 +477,23 @@ function displayResults() {
         messageContainer.appendChild(messageElement);
     }
  // Percentage
-    var percentageContainer = document.getElementById('percentage-container');
-    percentageContainer.innerHTML = '';
+var percentageContainer = document.getElementById('percentage-container');
+percentageContainer.innerHTML = '';
 
-    var percentageHeading = document.createElement('h3');
-    percentageHeading.style.color = 'black';
-    percentageHeading.style.fontWeight = 'bold';
-    percentageHeading.textContent = 'Percentage: ';
+var percentageHeading = document.createElement('h3');
+percentageHeading.style.color = 'blue';
+percentageHeading.style.fontWeight = 'bold';
+percentageHeading.textContent = 'Percentage: ';
 
-    var cgpaValue = parseFloat(studentData[0]['CGPA']);
-    var percentageValue = document.createElement('span');
-    percentageValue.style.color = 'red';
-    percentageValue.style.fontWeight = 'bold';
-    percentageValue.textContent = ((cgpaValue - 0.75) * 10).toFixed(2);
-  percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
+var cgpaValue = parseFloat(studentData[0]['CGPA']);
+var percentageValue = document.createElement('span');
+percentageValue.style.color = 'black';
+percentageValue.style.fontWeight = 'bold';
+var percentage = ((cgpaValue - 0.75) * 10).toFixed(2);
+percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
 
-    percentageHeading.appendChild(percentageValue);
-    percentageContainer.appendChild(percentageHeading);
+percentageHeading.appendChild(percentageValue);
+percentageContainer.appendChild(percentageHeading);
  
 var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
 var supplementaryContainer = document.getElementById('supplementary-container');
