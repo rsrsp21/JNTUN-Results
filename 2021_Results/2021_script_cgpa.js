@@ -339,7 +339,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
 22035A0509,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*
 22035A0510,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*`;
 
-function parseCSV(csv) {
+ function parseCSV(csv) {
             var lines = csv.split('\n');
             var headers = lines[0].split(',');
 
@@ -408,6 +408,10 @@ function parseCSV(csv) {
             sgpaHeader.textContent = "SGPA";
             headerRow.appendChild(sgpaHeader);
 
+            var creditsHeader = document.createElement('th');
+            creditsHeader.textContent = "Credits";
+            headerRow.appendChild(creditsHeader);
+
             var tableBody = document.createElement('tbody');
             table.appendChild(tableBody);
 
@@ -415,27 +419,24 @@ function parseCSV(csv) {
             keys.forEach(function (key) {
                 if (key !== 'ID' && key !== 'CGPA' && !key.includes('Total')) {
                     var row = document.createElement('tr');
+                    
+                    // Semester label
                     var labelCell = document.createElement('td');
                     labelCell.textContent = key;
                     labelCell.style.fontWeight = 'bold';
                     row.appendChild(labelCell);
 
-                    var valueCell = document.createElement('td');
-                    var value = studentData[0][key] === '' ? 'NA' : studentData[0][key];
-                    if (key === 'Supplementary Appearances') {
-                        labelCell.style.color = 'blue';
-                        valueCell.style.fontWeight = 'bold';
-                        valueCell.style.color = 'black';
-                    }
-                    valueCell.textContent = value;
-                    row.appendChild(valueCell);
+                    // SGPA
+                    var sgpaCell = document.createElement('td');
+                    sgpaCell.textContent = studentData[0][key] === '' ? 'NA' : studentData[0][key];
+                    row.appendChild(sgpaCell);
 
                     // Find the corresponding Credits key
                     var semesterKey = key.replace('-', '_'); // Replace '-' with '_'
                     var creditsKey = 'Credits_' + semesterKey; // Add 'Credits_' prefix
                     var creditsValue = studentData[0][creditsKey]; // Get the credits value
 
-                    // Create a cell for displaying the credits for the corresponding semester
+                    // Credits
                     var creditsCell = document.createElement('td');
                     creditsCell.textContent = creditsValue;
                     row.appendChild(creditsCell);
