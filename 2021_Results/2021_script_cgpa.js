@@ -413,7 +413,7 @@ function parseCSV(csv) {
 
             var keys = Object.keys(studentData[0]);
             keys.forEach(function (key) {
-                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Credits')) {
+                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Total')) {
                     var row = document.createElement('tr');
                     var labelCell = document.createElement('td');
                     labelCell.textContent = key;
@@ -431,8 +431,8 @@ function parseCSV(csv) {
                     row.appendChild(valueCell);
 
                     // Find the corresponding Credits key
-                    var creditsKey = key.replace('-', '_'); // Replace '-' with '_'
-                    creditsKey = 'Credits_' + creditsKey; // Add 'Credits_' prefix
+                    var semesterKey = key.replace('-', '_'); // Replace '-' with '_'
+                    var creditsKey = 'Credits_' + semesterKey; // Add 'Credits_' prefix
                     var creditsValue = studentData[0][creditsKey]; // Get the credits value
 
                     // Create a cell for displaying the credits for the corresponding semester
