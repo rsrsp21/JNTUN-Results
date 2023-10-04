@@ -436,11 +436,19 @@ function parseCSV(csv) {
                     valueCell.textContent = value;
                     row.appendChild(valueCell);
 
-                    tableBody.appendChild(row);
-
                     if (key.includes('Credits')) { // Check if the key contains 'Credits'
-                        totalCredits += parseFloat(value); // Add credits to totalCredits
+                        var creditsKey = key.replace('Credits_', ''); // Remove 'Credits_' prefix
+                        var creditsValue = studentData[0][key]; // Get the credits value
+
+                        // Create a cell for displaying the credits for the corresponding semester
+                        var creditsCell = document.createElement('td');
+                        creditsCell.textContent = creditsValue;
+                        row.appendChild(creditsCell);
+
+                        totalCredits += parseFloat(creditsValue); // Add credits to totalCredits
                     }
+
+                    tableBody.appendChild(row);
                 }
             });
 
@@ -492,7 +500,6 @@ function parseCSV(csv) {
                 displayResults();
             }
         }
-
         // Add event listener to input element
         document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
 
