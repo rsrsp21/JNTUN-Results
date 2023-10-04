@@ -339,7 +339,7 @@ var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-
 22035A0509,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*
 22035A0510,,,,,0.0,20.5,0.0,18.5,0.0,39.0,*`;
 
-   function parseCSV(csv) {
+ function parseCSV(csv) {
     var lines = csv.split('\n');
     var headers = lines[0].split(',');
 
@@ -417,7 +417,7 @@ function displayResults() {
 
     var keys = Object.keys(studentData[0]);
     keys.forEach(function (key) {
-        if (key !== 'ID' && key !== 'CGPA' && key !== 'Total Credits' && key !== 'Supplementary Appearances') {
+        if (key !== 'ID' && key !== 'CGPA' && key !== 'Total Credits' && key !== 'Supplementary Appearances' && !key.startsWith('Credits_')) {
             var row = document.createElement('tr');
             
             // Semester label
@@ -432,7 +432,7 @@ function displayResults() {
             row.appendChild(sgpaCell);
 
             // Find the corresponding Credits key
-            var creditsKey = 'Credits_' + key; // Add 'Credits_' prefix
+            var creditsKey = 'Credits_' + key; // Construct the corresponding Credits key
             var creditsValue = studentData[0][creditsKey]; // Get the credits value
 
             // Credits
