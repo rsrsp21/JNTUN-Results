@@ -369,6 +369,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
         var message = ''; // Declare the message variable outside the function
 
         
+       
         function displayResults() {
             var studentId = document.getElementById('student-id').value.trim();
             if (!studentId) {
