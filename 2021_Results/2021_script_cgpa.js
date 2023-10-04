@@ -1,4 +1,4 @@
-var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,Total Credits,Supplementary Appearances
+var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-2,CGPA,Total Credits,Supplementary Appearances
 21031A0101,0.0,10.5,0.0,10.5,0.0,20.5,0.0,12.5,0.0,54.0,****
 21031A0102,0.0,16.5,0.0,13.5,6.77,23.5,6.47,21.5,0.0,75.0,***
 21031A0103,7.13,19.5,6.69,19.5,8.17,23.5,7.14,21.5,7.28,84.0,
@@ -368,8 +368,6 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
 
         var message = ''; // Declare the message variable outside the function
 
-        
-       
         function displayResults() {
             var studentId = document.getElementById('student-id').value.trim();
             if (!studentId) {
@@ -419,7 +417,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
 
             var keys = Object.keys(studentData[0]);
             keys.forEach(function (key) {
-                if (key !== 'ID' && key !== 'CGPA' && !key.includes('Total') && key !== 'Supplementary Appearances') {
+                if (key !== 'ID' && key !== 'CGPA' && key !== 'Total Credits' && key !== 'Supplementary Appearances') {
                     var row = document.createElement('tr');
                     
                     // Semester label
@@ -434,8 +432,7 @@ var csvData = `ID,1-1,Credits_1,1-2,Credits_2,2-1,Credits_3,2-2,Credits_4,CGPA,T
                     row.appendChild(sgpaCell);
 
                     // Find the corresponding Credits key
-                    var semesterKey = key.replace('-', '_'); // Replace '-' with '_'
-                    var creditsKey = 'Credits_' + semesterKey; // Add 'Credits_' prefix
+                    var creditsKey = 'Credits_' + key; // Add 'Credits_' prefix
                     var creditsValue = studentData[0][creditsKey]; // Get the credits value
 
                     // Credits
