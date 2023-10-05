@@ -409,7 +409,7 @@ function displayResults() {
     headerRow.appendChild(sgpaHeader);
 
     var creditsHeader = document.createElement('th');
-    creditsHeader.textContent = "Credits";
+    creditsHeader.textContent = "Credits Obtained";
     headerRow.appendChild(creditsHeader);
 
     var tableBody = document.createElement('tbody');
