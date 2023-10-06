@@ -2053,6 +2053,16 @@ var studentId = document.getElementById('student-id').value.trim();
   var sgpaContainer = document.getElementById('sgpa-container');
   sgpaContainer.innerHTML = '';
 
+ // Create a div for the Total Credits
+  var totalCreditsDiv = document.createElement('div');
+  totalCreditsDiv.className = 'total-credits';
+
+  var totalCreditsText = document.createElement('h3');
+  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 19.5</span>';
+
+  totalCreditsDiv.appendChild(totalCreditsText);
+  sgpaContainer.appendChild(totalCreditsDiv);
+
   var sgpaResult = document.createElement('h3');
   var sgpa = calculateSGPA(studentData);
   sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
@@ -2071,6 +2081,18 @@ supplementaryResult.className = 'supplementary-message';
   sgpaContainer.appendChild(supplementaryResult);
 document.getElementById('student-id').focus();
 }
+
+function calculateTotalCredits(studentData) {
+  var totalCredits = 0;
+
+  for (var i = 0; i < studentData.length; i++) {
+    var credits = parseFloat(studentData[i].Credits);
+    totalCredits += credits;
+  }
+
+  return totalCredits.toFixed(1);
+}
+
  function handleKeyPress(event) {
       	if (event.keyCode === 13) { // 13 represents the Enter key
         	displayResults();
