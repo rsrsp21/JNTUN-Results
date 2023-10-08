@@ -2084,6 +2084,16 @@ var studentId = document.getElementById('student-id').value.trim();
   sgpaContainer.appendChild(totalCreditsContainer);
 
   document.getElementById('student-id').focus();
+
+// Load the existing list of searched roll numbers from local storage
+  var savedRollNumbers = localStorage.getItem("savedRollNumbers");
+  savedRollNumbers = savedRollNumbers ? JSON.parse(savedRollNumbers) : [];
+
+  // Add the current roll number to the list
+  savedRollNumbers.push(studentId);
+
+  // Save the updated list back to local storage
+  localStorage.setItem("savedRollNumbers", JSON.stringify(savedRollNumbers));
 }
 
 function calculateTotalCredits(studentData) {
@@ -2114,4 +2124,26 @@ function printResults() {
   window.print();
 
   document.body.innerHTML = originalContents;
+}
+window.onload = function() {
+  // Load the list of saved roll numbers from local storage
+  var savedRollNumbers = localStorage.getItem("savedRollNumbers");
+  savedRollNumbers = savedRollNumbers ? JSON.parse(savedRollNumbers) : [];
+
+  // Bind the saved roll numbers as autocomplete suggestions to the input field
+  var rollNoInput = document.getElementById("student-id");
+  rollNoInput.addEventListener('focus', function() {
+    rollNoInput.setAttribute('list', 'rollNumberSuggestions');
+  });
+
+  var datalist = document.createElement('datalist');
+  datalist.id = 'rollNumberSuggestions';
+
+  savedRollNumbers.forEach(function(rollNo) {
+    var option = document.createElement('option');
+    option.value = rollNo;
+    datalist.appendChild(option);
+  });
+
+  rollNoInput.parentNode.appendChild(datalist);
 }
