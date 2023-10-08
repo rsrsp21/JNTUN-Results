@@ -1,4 +1,4 @@
- * {
+  * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -130,7 +130,22 @@ h2 {
       display: flex;
       justify-content: center;
     }
+#percentage-total-container {
+    display: flex;
+    justify-content: center; /* Align the content horizontally to the center */
+    align-items: center;
+}
 
+#percentage-total-container > h3 {
+    margin: 0 5px; /* Add a small margin to both sides of the elements within the container */
+}
+/*#cgpa-container {
+    border: 2px solid #000; 
+    padding: 10px; 
+    text-align: center; 
+    width: 200px; 
+    margin: 0 auto; 
+}*/
    .footer {
       text-align: center;
       margin-top: 20px;
