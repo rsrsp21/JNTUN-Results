@@ -3102,100 +3102,126 @@ var clearedSupplementaryIDs = [
 ]
 function displayResults() {
 var studentId = document.getElementById('student-id').value.trim();
-if (!studentId) {
-  alert('Please enter a valid Roll Number');
-  return;
-}
-
-var studentData = getStudentData(studentId, parseCSV(csvData));
-if (studentData.length === 0) {
-  alert('No data found for the given Roll Number.');
-  return;
-}
-
-var idContainer = document.getElementById('id-container');
-var idHeading = idContainer.querySelector('p');
-idHeading.textContent = 'Roll Number: ';
-idHeading.style.color = 'black';
-idHeading.style.fontWeight = 'bold';
-idContainer.style.marginTop = '20px';
-
-var idValue = document.createElement('span');
-idValue.textContent = studentId;
-idValue.style.color = 'red';
-idValue.style.fontWeight = 'bold';
-idHeading.appendChild(idValue);
-
-var resultsContainer = document.getElementById('results-container');
-resultsContainer.innerHTML = '';
-
-var table = document.createElement('table');
-var tableHeader = document.createElement('thead');
-var tableBody = document.createElement('tbody');
-
-var headers = Object.keys(studentData[0]);
-var headerRow = document.createElement('tr');
-headers.forEach(function(header) {
-  if (header !== 'ID') {
-    var th = document.createElement('th');
-    th.textContent = header;
-    headerRow.appendChild(th);
+  if (!studentId) {
+    alert('Please enter a valid Roll Number');
+    return;
   }
-});
-tableHeader.appendChild(headerRow);
 
-studentData.forEach(function(subject) {
-  var row = document.createElement('tr');
-  Object.entries(subject).forEach(function([key, value]) {
-    if (key !== 'ID') {
-      var td = document.createElement('td');
-      td.textContent = value;
-      row.appendChild(td);
+  var studentData = getStudentData(studentId, parseCSV(csvData));
+  if (studentData.length === 0) {
+    alert('No data found for the given Roll Number.');
+    return;
+  }
+
+ var idContainer = document.getElementById('id-container');
+  var idHeading = idContainer.querySelector('p');
+  idHeading.textContent = 'Roll Number: ';
+ idHeading.style.color = 'black';
+  idHeading.style.fontWeight = 'bold';
+  idContainer.style.marginTop = '20px';
+
+  var idValue = document.createElement('span');
+  idValue.textContent = studentId;
+  idValue.style.color = 'red';
+  idValue.style.fontWeight = 'bold';
+  idHeading.appendChild(idValue);
+
+  var resultsContainer = document.getElementById('results-container');
+  resultsContainer.innerHTML = '';
+
+  var table = document.createElement('table');
+  var tableHeader = document.createElement('thead');
+  var tableBody = document.createElement('tbody');
+
+  var headers = Object.keys(studentData[0]);
+  var headerRow = document.createElement('tr');
+  headers.forEach(function(header) {
+    if (header !== 'ID') {
+      var th = document.createElement('th');
+      th.textContent = header;
+      headerRow.appendChild(th);
     }
   });
-  tableBody.appendChild(row);
-});
+  tableHeader.appendChild(headerRow);
 
-table.appendChild(tableHeader);
-table.appendChild(tableBody);
-resultsContainer.appendChild(table);
-  
-var sgpaContainer = document.getElementById('sgpa-container');
-sgpaContainer.innerHTML = '';
-
-var sgpaResult = document.createElement('h3');
-var sgpa = calculateSGPA(studentData);
-sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
-
-var supplementaryResult = document.createElement('p');
-supplementaryResult.className = 'supplementary-message';
-if (sgpa === 'Fail') {
-  supplementaryResult.innerHTML = '<span style="color: blue;">Better luck next time!</span>';
-} else if (clearedSupplementaryIDs.includes(studentId)) {
-  supplementaryResult.innerHTML = '<span style="color: blue;">Passed. Cleared in supplementary appearance(s).</span>';
-} else {
-  supplementaryResult.innerHTML = '<span style="color: green;">Congratulations! You have passed!</span>';
-}
-
-sgpaContainer.appendChild(sgpaResult);
-sgpaContainer.appendChild(supplementaryResult);
-document.getElementById('student-id').focus();
-}
-function handleKeyPress(event) {
-        if (event.keyCode === 13) { // 13 represents the Enter key
-          displayResults();
-        }
+  studentData.forEach(function(subject) {
+    var row = document.createElement('tr');
+    Object.entries(subject).forEach(function([key, value]) {
+      if (key !== 'ID') {
+        var td = document.createElement('td');
+        td.textContent = value;
+        row.appendChild(td);
       }
+    });
+    tableBody.appendChild(row);
+  });
 
-      // Add event listener to input element
-      document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
+  table.appendChild(tableHeader);
+  table.appendChild(tableBody);
+  resultsContainer.appendChild(table);
+	
+  var sgpaContainer = document.getElementById('sgpa-container');
+  sgpaContainer.innerHTML = '';
+
+  // Create a container for the Total Credits
+  var totalCreditsContainer = document.createElement('div');
+  totalCreditsContainer.className = 'total-credits';
+
+  var sgpaResult = document.createElement('h3');
+  var sgpa = calculateSGPA(studentData);
+  sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
+
+  var supplementaryResult = document.createElement('p');
+  supplementaryResult.className = 'supplementary-message';
+  if (sgpa === 'Fail') {
+    supplementaryResult.innerHTML = '<span style="color: blue;">Better luck next time!</span>';
+  } else if (clearedSupplementaryIDs.includes(studentId)) {
+    supplementaryResult.innerHTML = '<span style="color: blue;">Passed. Cleared in supplementary appearance(s).</span>';
+  } else {
+    supplementaryResult.innerHTML = '<span style="color: green;">Congratulations! You have passed!</span>';
+  }
+
+  // Append SGPA and Supplementary Results to the SGPA Container
+  sgpaContainer.appendChild(sgpaResult);
+  sgpaContainer.appendChild(supplementaryResult);
+
+  // Calculate and display Total Credits Obtained
+  var totalCreditsText = document.createElement('h6');
+  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 21.5</span>';
+  totalCreditsContainer.appendChild(totalCreditsText);
+
+  // Append the Total Credits Container to the SGPA Container
+  sgpaContainer.appendChild(totalCreditsContainer);
+
+  document.getElementById('student-id').focus();
+}
+
+function calculateTotalCredits(studentData) {
+  var totalCredits = 0;
+
+  for (var i = 0; i < studentData.length; i++) {
+    var credits = parseFloat(studentData[i].Credits);
+    totalCredits += credits;
+  }
+
+  return totalCredits.toFixed(1);
+}
+
+ function handleKeyPress(event) {
+      	if (event.keyCode === 13) { // 13 represents the Enter key
+        	displayResults();
+      	}
+    	}
+
+    	// Add event listener to input element
+    	document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
 
 function printResults() {
-var printContents = document.querySelector('.container').innerHTML;
-var originalContents = document.body.innerHTML;
+  var printContents = document.querySelector('.container').innerHTML;
+  var originalContents = document.body.innerHTML;
 
-document.body.innerHTML = printContents;
-window.print();
+  document.body.innerHTML = printContents;
+  window.print();
 
-document.body.innerHTML = originalContents;
+  document.body.innerHTML = originalContents;
 }
