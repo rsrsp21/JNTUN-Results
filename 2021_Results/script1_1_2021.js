@@ -2084,6 +2084,14 @@ var studentId = document.getElementById('student-id').value.trim();
   sgpaContainer.appendChild(totalCreditsContainer);
 
   document.getElementById('student-id').focus();
+var savedRollNumbers = localStorage.getItem("savedRollNumbers");
+  savedRollNumbers = savedRollNumbers ? JSON.parse(savedRollNumbers) : [];
+
+  // Add the current roll number to the list
+  savedRollNumbers.push(studentId);
+
+  // Save the updated list back to local storage
+  localStorage.setItem("savedRollNumbers", JSON.stringify(savedRollNumbers));
 }
 
 function calculateTotalCredits(studentData) {
