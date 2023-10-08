@@ -20,8 +20,9 @@
  <div class="separator"></div>
     <label for="student-id">Enter Roll Number:</label>
     <br>
-	<input type="text" id="student-id" name="rollNo">
-	<br>
+	<input type="text" id="student-id" name="rollNo" list="rollNumberSuggestions">
+    <datalist id="rollNumberSuggestions"></datalist>
+    <br>
     <button onclick="displayResults()">View Results</button>
 <br>
 <div id="id-container"><p></p></div>
