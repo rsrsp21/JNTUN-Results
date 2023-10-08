@@ -196,7 +196,7 @@ var studentId = document.getElementById('student-id').value.trim();
   var totalCreditsContainer = document.createElement('div');
   totalCreditsContainer.className = 'total-credits';
 
-  var sgpaResult = document.createElement('h3');
+  /*var sgpaResult = document.createElement('h3');
   var sgpa = calculateSGPA(studentData);
   sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
 
@@ -213,6 +213,7 @@ var studentId = document.getElementById('student-id').value.trim();
   // Append SGPA and Supplementary Results to the SGPA Container
   sgpaContainer.appendChild(sgpaResult);
   sgpaContainer.appendChild(supplementaryResult);
+  */
 
   // Calculate and display Total Credits Obtained
   var totalCreditsText = document.createElement('h6');
