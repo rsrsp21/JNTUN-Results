@@ -3713,12 +3713,16 @@ var studentId = document.getElementById('student-id').value.trim();
   var sgpaContainer = document.getElementById('sgpa-container');
   sgpaContainer.innerHTML = '';
 
+  // Create a container for the Total Credits
+  var totalCreditsContainer = document.createElement('div');
+  totalCreditsContainer.className = 'total-credits';
+
   var sgpaResult = document.createElement('h3');
   var sgpa = calculateSGPA(studentData);
   sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
 
   var supplementaryResult = document.createElement('p');
-supplementaryResult.className = 'supplementary-message';
+  supplementaryResult.className = 'supplementary-message';
   if (sgpa === 'Fail') {
     supplementaryResult.innerHTML = '<span style="color: blue;">Better luck next time!</span>';
   } else if (clearedSupplementaryIDs.includes(studentId)) {
@@ -3727,10 +3731,32 @@ supplementaryResult.className = 'supplementary-message';
     supplementaryResult.innerHTML = '<span style="color: green;">Congratulations! You have passed!</span>';
   }
 
+  // Append SGPA and Supplementary Results to the SGPA Container
   sgpaContainer.appendChild(sgpaResult);
   sgpaContainer.appendChild(supplementaryResult);
-document.getElementById('student-id').focus();
+
+  // Calculate and display Total Credits Obtained
+  var totalCreditsText = document.createElement('h6');
+  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 23.5</span>';
+  totalCreditsContainer.appendChild(totalCreditsText);
+
+  // Append the Total Credits Container to the SGPA Container
+  sgpaContainer.appendChild(totalCreditsContainer);
+
+  document.getElementById('student-id').focus();
 }
+
+function calculateTotalCredits(studentData) {
+  var totalCredits = 0;
+
+  for (var i = 0; i < studentData.length; i++) {
+    var credits = parseFloat(studentData[i].Credits);
+    totalCredits += credits;
+  }
+
+  return totalCredits.toFixed(1);
+}
+
  function handleKeyPress(event) {
       	if (event.keyCode === 13) { // 13 represents the Enter key
         	displayResults();
