@@ -2084,14 +2084,19 @@ var studentId = document.getElementById('student-id').value.trim();
   sgpaContainer.appendChild(totalCreditsContainer);
 
   document.getElementById('student-id').focus();
-var savedRollNumbers = localStorage.getItem("savedRollNumbers");
+
+	// Load the existing list of searched roll numbers from local storage
+  var savedRollNumbers = localStorage.getItem("savedRollNumbers");
   savedRollNumbers = savedRollNumbers ? JSON.parse(savedRollNumbers) : [];
 
-  // Add the current roll number to the list
-  savedRollNumbers.push(studentId);
+  // Check if the current roll number is already in the list
+  if (!savedRollNumbers.includes(studentId)) {
+    // Add the current roll number to the list
+    savedRollNumbers.push(studentId);
 
-  // Save the updated list back to local storage
-  localStorage.setItem("savedRollNumbers", JSON.stringify(savedRollNumbers));
+    // Save the updated list back to local storage
+    localStorage.setItem("savedRollNumbers", JSON.stringify(savedRollNumbers));
+  }
 }
 
 function calculateTotalCredits(studentData) {
