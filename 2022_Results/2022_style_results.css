@@ -164,6 +164,7 @@ tr:hover td {
   #student-id,
   button,
   .print-button,
+.supplementary-message,
   .footer,
   .cgpa-buttons {
     display: none;
