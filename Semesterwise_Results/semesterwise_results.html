@@ -22,7 +22,14 @@
 	<input type="text" id="student-id">
 	<br>
 <div class="centered-dropdown">
-  <label for="semester-select">Select Semester:</label>
+<label for="year-select">Select Year of Admission:</label>
+<select id="year-select">
+<option value="2020">2020</option>
+  <option value="2021">2021</option>
+  <option value="2022">2022</option>
+  <!-- Add more year options as needed -->
+</select><br>
+	<label for="semester-select">Select Semester:</label>
   <select id="semester-select">
     <option value="sem-1">1-1</option>
     <option value="sem-2">1-2</option>
@@ -30,14 +37,7 @@
 <option value="sem-4">2-2</option>
 <option value="sem-6">3-2</option>
     <!-- Add more semester options as needed -->
-  </select><br>
-<label for="year-select">Select Year of Admission:</label>
-<select id="year-select">
-<option value="2020">2020</option>
-  <option value="2021">2021</option>
-  <option value="2022">2022</option>
-  <!-- Add more year options as needed -->
-</select>
+  </select>
 </div>
     <button onclick="displayResults()">View Results</button>
 <br>
