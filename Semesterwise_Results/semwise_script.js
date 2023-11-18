@@ -30,6 +30,10 @@ function handleSemesterAndYearChange() {
     loadScript(selectedScript, function () {
       // JavaScript file loaded, you can trigger any functions or code here
     });
+  } else {
+    // No JavaScript file found for the selected semester
+    console.error("No result found for the selected semester.");
+    // You can display an alert, log to console, or take any other appropriate action.
   }
 }
 
@@ -41,4 +45,3 @@ document.getElementById("year-select").addEventListener("change", handleSemester
 
 // Initial load of the selected semester's JavaScript file based on the default selected values
 handleSemesterAndYearChange();
-
