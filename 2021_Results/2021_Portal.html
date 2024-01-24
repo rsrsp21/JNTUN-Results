@@ -161,6 +161,57 @@
       padding-top: 20px;
       border-top: 1px solid #dddddd;
     }
+
+.events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .event-tile {
+            position: relative;
+            margin: 10px;
+            overflow: hidden;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-tile:hover {
+            transform: scale(1.05);
+        }
+
+        .event-details {
+            padding: 15px;
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .event-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: filter 0.3s ease-in-out;
+        }
+
+        .event-description {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .event-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .event-tile:hover .event-buttons {
+            opacity: 1;
+        }
     @media (max-width: 700px) {
         .logo img {
             width: 375px;
@@ -192,9 +243,18 @@
 	  </p>
 <br>
 <h3 align = 'center'><b><u>Candidate Activity:</u></b></h3><br>
+	  <div class="events-container">
+	<div class="event-tile">
+            <img class="event-image" src="pexels-pixabay-207529.jpg" alt="Event 2">
+            <div class="event-details">
+                <div class="event-title">CGPA Score</div>
+                <div class="event-description">(Updated upto 2-2)</div>
+                <div class ='imp_list'>
+                    <a href='2021_cgpa_score.html'>View Now</a>
+                </div>
 	  <div>
 	  <ul class ='imp_list'>
-	  <li><a href='2021_cgpa_score.html'>CGPA Score<br>(Updated upto 2-2)</a></li>
+	  <!--<li><a href='2021_cgpa_score.html'>CGPA Score<br>(Updated upto 2-2)</a></li>-->
 	   <li><a href='2021_Toppers_List.html'>Toppers List<br>(Updated upto 2-2)</a></li>
 	  </ul></div>
 	<div>
