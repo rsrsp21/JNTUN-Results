@@ -165,21 +165,24 @@
 .events-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .event-tile {
             position: relative;
-            margin: 10px;
+            margin-bottom: 20px;
             overflow: hidden;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for tiles */
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease-in-out;
+            flex: 0 1 calc(33.33% - 20px);
+            aspect-ratio: 1 / 1;
         }
-
-        .event-tile:hover {
+ .event-tile:hover {
             transform: scale(1.05);
         }
 
@@ -242,7 +245,7 @@
 	 <a href="../notifications/2021_notify.html">more...</a>
 	  </p>
 <br>
-<h3 align = 'center'><b><u>Candidate Activity:</u></b></h3><br>
+<h3 align = 'center'><b><u>Candidate Activity:</u></b></h3>
 	  <div class="events-container">
 	<div class="event-tile">
             <div class="event-details">
@@ -252,7 +255,7 @@
                     <li><a href='2021_cgpa_score.html'>View Now</a></li>
 		</ul></div>
 	    </div>
-	</div></div><br>
+	</div></div>
 	
 	  <div>
 	  <ul class ='imp_list'>
