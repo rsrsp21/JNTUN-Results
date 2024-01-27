@@ -374,6 +374,7 @@ function displayResults() {
         alert('Please enter a valid Roll Number.');
         return;
     }
+ var branch = getEngineeringBranch(studentId.charAt(7));
 
     var studentData = getStudentData(studentId, parseCSV(csvData));
     if (studentData.length === 0) {
@@ -386,6 +387,10 @@ function displayResults() {
 
     var idHeading = document.createElement('h3');
     idHeading.innerHTML = '<span style="color: black; font-weight: bold">Roll Number: </span><span style="color: red; font-weight: bold">' + studentId + '</span>';
+    idContainer.appendChild(idHeading);
+
+ var idHeading = document.createElement('h3');
+    idHeading.innerHTML = '<span style="color: blue; font-weight: bold; margin-left: 10px">Branch: </span><span style="color: green; font-weight: bold">' + branch + '</span>';
     idContainer.appendChild(idHeading);
 
     var tableContainer = document.getElementById('table-container');
@@ -527,7 +532,22 @@ supplementaryValue.textContent = supplementaryAppearances || 'NA';
 supplementaryHeading.appendChild(supplementaryValue);
 supplementaryContainer.appendChild(supplementaryHeading);
 }
-
+function getEngineeringBranch(branchCode) {
+    switch (branchCode) {
+        case '1':
+            return 'Civil Engineering';
+        case '2':
+            return 'Electrical and Electronics Engineering';
+        case '3':
+            return 'Mechanical Engineering';
+        case '4':
+            return 'Electronics and Communication Engineering';
+        case '5':
+            return 'Computer Science and Engineering';
+        default:
+            return 'Unknown Branch';
+    }
+}
 function handleKeyPress(event) {
     if (event.keyCode === 13) {
         // 13 represents the Enter key
