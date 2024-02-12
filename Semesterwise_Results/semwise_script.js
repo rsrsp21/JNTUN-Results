@@ -7,6 +7,39 @@ function loadScript(filename, callback) {
   document.head.appendChild(script);
 }
 
+// Function to update semester dropdown options
+function updateSemesterDropdownOptions(availableSemesters) {
+  var semesterDropdown = document.getElementById("semester-select");
+
+  // Clear existing options
+  semesterDropdown.innerHTML = "";
+
+  // Add available semesters as options
+  availableSemesters.forEach(function (semester) {
+    var option = document.createElement("option");
+    option.value = semester;
+
+    // Customize the displayed text based on your requirements
+    if (semester === "sem-1") {
+      option.text = "1-1";
+    } else if (semester === "sem-2") {
+      option.text = "1-2";
+    } else if (semester === "sem-3") {
+      option.text = "2-1";
+    } else if (semester === "sem-4") {
+      option.text = "2-2";
+    } else if (semester === "sem-5") {
+      option.text = "3-1";
+    } else if (semester === "sem-6") {
+      option.text = "3-2";
+    } else {
+      option.text = semester.toUpperCase();
+    }
+
+    semesterDropdown.add(option);
+  });
+}
+
 // Function to handle the dropdown change event
 function handleSemesterAndYearChange() {
   var selectedSemester = document.getElementById("semester-select");
@@ -44,22 +77,6 @@ function handleSemesterAndYearChange() {
     console.error("No result found for the selected semester or year.");
     // You can display an alert, log to console, or take any other appropriate action.
   }
-}
-
-// Function to update semester dropdown options
-function updateSemesterDropdownOptions(availableSemesters) {
-  var semesterDropdown = document.getElementById("semester-select");
-
-  // Clear existing options
-  semesterDropdown.innerHTML = "";
-
-  // Add available semesters as options
-  availableSemesters.forEach(function (semester) {
-    var option = document.createElement("option");
-    option.value = semester;
-    option.text = semester.toUpperCase();
-    semesterDropdown.add(option);
-  });
 }
 
 // Add an event listener to the semester dropdown for change events
