@@ -9,32 +9,57 @@ function loadScript(filename, callback) {
 
 // Function to handle the dropdown change event
 function handleSemesterAndYearChange() {
-  var selectedSemester = document.getElementById("semester-select").value;
+  var selectedSemester = document.getElementById("semester-select");
   var selectedYear = document.getElementById("year-select").value;
 
   // Define a mapping of semesters to their corresponding JavaScript files and folders
   var semesterScriptMap = {
-    "sem-1": `../${selectedYear}_Results/script1_1_${selectedYear}.js`,
-    "sem-2": `../${selectedYear}_Results/script1_2_${selectedYear}.js`,
-    "sem-3": `../${selectedYear}_Results/script2_1_${selectedYear}.js`,
-    "sem-4": `../${selectedYear}_Results/script2_2_${selectedYear}.js`,
-    "sem-6": `../${selectedYear}_Results/script3_2_${selectedYear}.js`
+    "sem-1": ["2021", "2022"],  // Available for 2021 and 2022
+    "sem-2": ["2021", "2022"],  // Available for 2021 and 2022
+    "sem-3": ["2021", "2022"],  // Available for 2021 and 2022
+    "sem-4": ["2021"],           // Available only for 2021
+    "sem-5": ["2021"],           // Available only for 2021
+    "sem-6": ["2020"]            // Available only for 2020
     // Add more semesters and their corresponding JavaScript files as needed
   };
 
-  // Load the selected semester's JavaScript file
-  var selectedScript = semesterScriptMap[selectedSemester];
+  // Filter semesters based on the selected year
+  var availableSemesters = Object.keys(semesterScriptMap).filter(function (semester) {
+    return semesterScriptMap[semester].includes(selectedYear);
+  });
 
-  if (selectedScript) {
+  // Update the semester dropdown options
+  updateSemesterDropdownOptions(availableSemesters);
+
+  // Load the selected semester's JavaScript file
+  var selectedScript = `../${selectedYear}_Results/script${selectedSemester}_${selectedYear}.js`;
+
+  if (availableSemesters.includes(selectedSemester.value)) {
     // Load the selected JavaScript file
     loadScript(selectedScript, function () {
       // JavaScript file loaded, you can trigger any functions or code here
     });
   } else {
     // No JavaScript file found for the selected semester
-    console.error("No result found for the selected semester.");
+    console.error("No result found for the selected semester or year.");
     // You can display an alert, log to console, or take any other appropriate action.
   }
+}
+
+// Function to update semester dropdown options
+function updateSemesterDropdownOptions(availableSemesters) {
+  var semesterDropdown = document.getElementById("semester-select");
+
+  // Clear existing options
+  semesterDropdown.innerHTML = "";
+
+  // Add available semesters as options
+  availableSemesters.forEach(function (semester) {
+    var option = document.createElement("option");
+    option.value = semester;
+    option.text = semester.toUpperCase();
+    semesterDropdown.add(option);
+  });
 }
 
 // Add an event listener to the semester dropdown for change events
