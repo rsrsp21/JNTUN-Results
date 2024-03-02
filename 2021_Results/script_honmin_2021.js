@@ -262,7 +262,7 @@ var studentId = document.getElementById('student-id').value.trim();
 
   // Calculate and display Total Credits Obtained
   var totalCreditsText = document.createElement('h6');
-  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 4.0</span>';
+  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 8.0</span>';
   totalCreditsContainer.appendChild(totalCreditsText);
 
   // Append the Total Credits Container to the SGPA Container
