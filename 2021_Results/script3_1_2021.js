@@ -3272,23 +3272,47 @@ var grades = {
   };
 
   function parseCSV(csv) {
-    var lines = csv.split('\n');
-    var headers = lines[0].split(',');
+  var lines = csv.split('\n');
+  var headers = lines[0].split(',');
 
-    var data = [];
-    for (var i = 1; i < lines.length; i++) {
-      var values = lines[i].split(',');
-      if (values.length === headers.length) {
-        var entry = {};
-        for (var j = 0; j < headers.length; j++) {
-          entry[headers[j].trim()] = values[j].trim();
-        }
-        data.push(entry);
+  var data = [];
+  for (var i = 1; i < lines.length; i++) {
+    var values = parseCSVLine(lines[i]);
+    if (values.length === headers.length) {
+      var entry = {};
+      for (var j = 0; j < headers.length; j++) {
+        entry[headers[j].trim()] = values[j].trim();
       }
+      data.push(entry);
     }
-
-    return data;
   }
+
+  return data;
+}
+
+function parseCSVLine(line) {
+  var values = [];
+  var insideQuotes = false;
+  var currentValue = '';
+
+  for (var i = 0; i < line.length; i++) {
+    var char = line.charAt(i);
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+    } else if (char === ',' && !insideQuotes) {
+      values.push(currentValue);
+      currentValue = '';
+    } else {
+      currentValue += char;
+    }
+  }
+
+  values.push(currentValue);  // Add the last value
+
+  return values;
+}
+
 
   function getStudentData(id, data) {
     var studentData = data.filter(function(entry) {
