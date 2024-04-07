@@ -1,4 +1,4 @@
-var csvData = `ID,1-1,Credits_1-1,Total Credits,CGPA,Supplementary Appearances
+var csvData = `ID,1-1,Credits_1-1,CGPA,Total Credits,Supplementary Appearances
 23031A0101,0,14.5,0,14.5,
 23031A0102,0,8.5,0,8.5,
 23031A0103,0,14.5,0,14.5,
