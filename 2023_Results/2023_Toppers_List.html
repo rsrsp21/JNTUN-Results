@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Toppers List (2022-26)</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
+    }
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 50px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px
+}
+
+.table-container {
+    margin-bottom: 50px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed; /* Added this line to enforce fixed layout */
+  margin: 0 auto; /* Center the table within the container */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+    th,
+    td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #dddddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    td {
+      background-color: #ffffff;
+      color: #333333;
+    }
+
+    tr:nth-child(even) td {
+      background-color: #f9f9f9;
+    }
+
+    tr:hover td {
+      background-color: #ebebeb;
+    }
+.separator {
+      border-top: 1px solid #dddddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+button {
+      display: block;
+      margin-bottom: 20px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      width: 300px; /* Adjust the width as desired */
+      margin: 0 auto; /* Center the element horizontally */
+    }
+
+    button {
+      background-color: maroon;
+      color: #ffffff;
+      cursor: pointer;
+    }
+.footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #dddddd;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+}
+    </style>
+    <script>
+        // CSV data variables
+        var csvDataOverall = `
+            ID,CGPA
+23035A0325,9.76
+22031A0506,9.13
+23035A0233,9.12
+22031A0548,9.05
+22031A0527,8.97
+23035A0103,8.78
+22031A0547,8.73
+23035A0111,8.71
+23035A0334,8.69
+23035A0346,8.65
+        `;
+        
+        var csvDataCE = `
+            ID,CGPA
+23035A0103,8.78
+23035A0111,8.71
+23035A0122,8.31
+23035A0124,7.76
+23035A0104,7.57
+23035A0120,7.39
+23035A0117,7.31
+23035A0115,7.29
+23035A0112,6.8
+23035A0116,6.75
+        `;
+var csvDataEEE = `
+            ID,CGPA
+23035A0233,9.12
+23035A0215,8.55
+23035A0201,8.53
+22031A0218,8.51
+23035A0231,8.49
+23035A0232,8.39
+23035A0225,8.37
+23035A0229,8.16
+23035A0205,8.12
+23035A0202,8.12
+        `;
+var csvDataMEC = `
+            ID,CGPA
+23035A0325,9.76
+23035A0334,8.69
+23035A0346,8.65
+23035A0331,8.55
+23035A0322,8.41
+23035A0340,8.35
+23035A0327,8.25
+23035A0306,8.25
+23035A0309,8.18
+23035A0336,8.04
+        `;
+var csvDataECE = `
+            ID,CGPA
+22031A0406,8.48
+22031A0408,8.48
+22031A0410,8.48
+23035A0405,8.45
+22031A0446,7.95
+22031A0453,7.94
+22031A0457,7.89
+23035A0401,7.67
+22031A0444,7.55
+22031A0421,7.54
+        `;
+var csvDataCSE = `
+            ID,CGPA
+22031A0506,9.13
+22031A0548,9.05
+22031A0527,8.97
+22031A0547,8.73
+22031A0536,8.64
+22031A0535,8.62
+22031A0517,8.56
+22031A0552,8.55
+22031A0510,8.54
+23035A0502,8.51
+        `;
+        
+        // Function to parse and populate table from CSV data
+        function populateTableFromCSV(tableId, csvData) {
+            var rows = csvData.trim().split('\n');
+            var tableBody = document.querySelector('#' + tableId + ' tbody');
+            for (var i = 1; i < rows.length; i++) {
+                var rowData = rows[i].split(',');
+                var rowHtml = '<tr>';
+                for (var j = 0; j < rowData.length; j++) {
+                    rowHtml += '<td>' + rowData[j] + '</td>';
+                }
+                rowHtml += '</tr>';
+                tableBody.innerHTML += rowHtml;
+            }
+        }
+        
+        // Call the function to populate the tables
+        window.onload = function() {
+            populateTableFromCSV('overall-toppers', csvDataOverall);
+            populateTableFromCSV('CE-toppers', csvDataCE);
+populateTableFromCSV('EEE-toppers', csvDataEEE);
+populateTableFromCSV('MEC-toppers', csvDataMEC);
+populateTableFromCSV('ECE-toppers', csvDataECE);
+populateTableFromCSV('CSE-toppers', csvDataCSE);
+            // Repeat the above line for other tables and CSV data
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+	<div class="logo">
+      <a href="https://jntunresults.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
+    </div>
+    <!--<h1 class="university-name">University Name</h1>-->
+    <div class="separator"></div>
+        <h1><b>Toppers List (2022-26)</b></h1>
+<h2><b>(Upto 2-1)</b></h2>
+    <div class="separator"></div>
+        <div class="table-container">
+            <h2><b>All Branches (Overall)</b></h2>
+            <table id="overall-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="table-container">
+            <h2><b>Civil Engineering</b></h2>
+            <table id="CE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Electrical and Electronic Engineering</b></h2>
+            <table id="EEE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Mechanical Engineering</b></h2>
+            <table id="MEC-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Electronics and Communication Engineering</b></h2>
+            <table id="ECE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+<div class="table-container">
+            <h2><b>Computer Science Engineering</b></h2>
+            <table id="CSE-toppers" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Roll Number</th>
+                        <th>CGPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Populated dynamically with JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Repeat the above HTML code for other tables -->
+	 <div>
+      <button onclick="location.href='2022_Portal.html';">Back to home</button>
+    </div><br>
+
+ <div class="footer">
+      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
+    </div>
+</div>
+</body>
+</html>
