@@ -1,0 +1,255 @@
+var csvData = `ID,Subject Code,Subject Name,Grade,Credits
+22031A0218,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,C,4.0
+22031A0406,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+22031A0406,R202205AT,OPERATING SYSTEMS(INTEGRATED),C,3.0
+22031A0408,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+22031A0408,R202205AT,OPERATING SYSTEMS(INTEGRATED),E,3.0
+22031A0446,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+22031A0446,R202205AT,OPERATING SYSTEMS(INTEGRATED),D,3.0
+22031A0453,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+22031A0453,R202205AT,OPERATING SYSTEMS(INTEGRATED),D,3.0
+22031A0457,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+22031A0457,R202205AT,OPERATING SYSTEMS(INTEGRATED),E,3.0
+22031A0504,R202205B,DATA VISUALIZATION,C,4.0
+22031A0505,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0
+22031A0506,R202205D,MATHEMATICS FOR MACHINE LEARNING,B,4.0
+22031A0510,R202205B,DATA VISUALIZATION,B,4.0
+22031A0513,R202205C,PRINCIPALES OF CYBER SECURITY,C,4.0
+22031A0521,R202205B,DATA VISUALIZATION,B,4.0
+22031A0524,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0
+22031A0527,R202205B,DATA VISUALIZATION,B,4.0
+22031A0528,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0
+22031A0530,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0
+22031A0534,R202205B,DATA VISUALIZATION,C,4.0
+22031A0535,R202205C,PRINCIPALES OF CYBER SECURITY,B,4.0
+22031A0536,R202205B,DATA VISUALIZATION,B,4.0
+22031A0539,R202205D,MATHEMATICS FOR MACHINE LEARNING,D,4.0
+22031A0543,R202205D,MATHEMATICS FOR MACHINE LEARNING,C,4.0
+22031A0544,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0
+22031A0546,R202205D,MATHEMATICS FOR MACHINE LEARNING,C,4.0
+22031A0548,R202205D,MATHEMATICS FOR MACHINE LEARNING,C,4.0
+22031A0552,R202205D,MATHEMATICS FOR MACHINE LEARNING,D,4.0
+22031A0554,R202205C,PRINCIPALES OF CYBER SECURITY,ABSENT,0.0
+23035A0202,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,C,4.0
+23035A0205,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,B,4.0
+23035A0211,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,ABSENT,0.0
+23035A0215,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,C,4.0
+23035A0219,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,ABSENT,0.0
+23035A0223,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),F,0.0
+23035A0223,R202205AT,OPERATING SYSTEMS(INTEGRATED),ABSENT,0.0
+23035A0225,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,ABSENT,0.0
+23035A0228,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+23035A0228,R202205AT,OPERATING SYSTEMS(INTEGRATED),D,3.0
+23035A0229,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,B,4.0
+23035A0231,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,C,4.0
+23035A0232,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,B,4.0
+23035A0233,R202202A,ELECTRICAL DISTRIBUTION SYSTEMS,B,4.0
+23035A0306,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0309,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,C,4.0
+23035A0311,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),F,0.0
+23035A0311,R202205AT,OPERATING SYSTEMS(INTEGRATED),F,0.0
+23035A0322,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0325,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0327,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0331,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0334,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0336,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0338,R202205AL,OPERATING SYSTEMS LAB(INTEGRATED),A,1.0
+23035A0338,R202205AT,OPERATING SYSTEMS(INTEGRATED),D,3.0
+23035A0340,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,B,4.0
+23035A0346,R202203A,ALTERNATIVE FUELS TECHNOLOGIES,C,4.0
+23035A0405,R202204B,CMOS ANALOG IC DESIGN,C,4.0
+23035A0501,R202205E,INTERNET OF THINGS,D,4.0
+23035A0502,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,C,4.0
+23035A0510,R202204AT,ELECTRONIC DEVICES AND BASIC CIRCUITS,D,4.0`;
+
+    var grades = {
+      'A+': 10,
+      'A': 9,
+      'B': 8,
+      'C': 7,
+      'D': 6,
+      'E': 5,
+      'F': 'Fail',
+      'COMPLE': 0,
+	'ABSENT': 'Fail'
+    };
+
+    function parseCSV(csv) {
+      var lines = csv.split('\n');
+      var headers = lines[0].split(',');
+
+      var data = [];
+      for (var i = 1; i < lines.length; i++) {
+        var values = lines[i].split(',');
+        if (values.length === headers.length) {
+          var entry = {};
+          for (var j = 0; j < headers.length; j++) {
+            entry[headers[j].trim()] = values[j].trim();
+          }
+          data.push(entry);
+        }
+      }
+
+      return data;
+    }
+
+    function getStudentData(id, data) {
+      var studentData = data.filter(function(entry) {
+        return entry.ID === id;
+      });
+
+      return studentData;
+    }
+
+    function calculateSGPA(studentData) {
+      var totalCredits = 0;
+      var totalGradePoints = 0;
+
+      for (var i = 0; i < studentData.length; i++) {
+        var subject = studentData[i];
+        var grade = grades[subject.Grade];
+        var credits = parseFloat(subject.Credits);
+
+        if (grade === 'Fail') {
+          return 'Fail';
+        }
+
+        totalCredits += credits;
+        totalGradePoints += grade * credits;
+      }
+
+      var sgpa = (totalGradePoints / totalCredits).toFixed(2);
+
+      return sgpa;
+    }
+var clearedSupplementaryIDs = [
+
+]
+
+function displayResults() {
+var studentId = document.getElementById('student-id').value.trim();
+  if (!studentId) {
+    alert('Please enter a valid Roll Number');
+    return;
+  }
+
+  var studentData = getStudentData(studentId, parseCSV(csvData));
+  if (studentData.length === 0) {
+    alert('No data found for the given Roll Number.');
+    return;
+  }
+
+ var idContainer = document.getElementById('id-container');
+  var idHeading = idContainer.querySelector('p');
+  idHeading.textContent = 'Roll Number: ';
+ idHeading.style.color = 'black';
+  idHeading.style.fontWeight = 'bold';
+  idContainer.style.marginTop = '20px';
+
+  var idValue = document.createElement('span');
+  idValue.textContent = studentId;
+  idValue.style.color = 'red';
+  idValue.style.fontWeight = 'bold';
+  idHeading.appendChild(idValue);
+
+  var resultsContainer = document.getElementById('results-container');
+  resultsContainer.innerHTML = '';
+
+  var table = document.createElement('table');
+  var tableHeader = document.createElement('thead');
+  var tableBody = document.createElement('tbody');
+
+  var headers = Object.keys(studentData[0]);
+  var headerRow = document.createElement('tr');
+  headers.forEach(function(header) {
+    if (header !== 'ID') {
+      var th = document.createElement('th');
+      th.textContent = header;
+      headerRow.appendChild(th);
+    }
+  });
+  tableHeader.appendChild(headerRow);
+
+  studentData.forEach(function(subject) {
+    var row = document.createElement('tr');
+    Object.entries(subject).forEach(function([key, value]) {
+      if (key !== 'ID') {
+        var td = document.createElement('td');
+        td.textContent = value;
+        row.appendChild(td);
+      }
+    });
+    tableBody.appendChild(row);
+  });
+
+  table.appendChild(tableHeader);
+  table.appendChild(tableBody);
+  resultsContainer.appendChild(table);
+	
+  var sgpaContainer = document.getElementById('sgpa-container');
+  sgpaContainer.innerHTML = '';
+
+  // Create a container for the Total Credits
+  var totalCreditsContainer = document.createElement('div');
+  totalCreditsContainer.className = 'total-credits';
+
+  /*var sgpaResult = document.createElement('h3');
+  var sgpa = calculateSGPA(studentData);
+  sgpaResult.innerHTML = '<span style="color: black;">SGPA : </span><span style="color: red;">' + sgpa + '</span>';
+
+  var supplementaryResult = document.createElement('p');
+  supplementaryResult.className = 'supplementary-message';
+  if (sgpa === 'Fail') {
+    supplementaryResult.innerHTML = '<span style="color: blue;">Better luck next time!</span>';
+  } else if (clearedSupplementaryIDs.includes(studentId)) {
+    supplementaryResult.innerHTML = '<span style="color: blue;">Passed. Cleared in supplementary appearance(s).</span>';
+  } else {
+    supplementaryResult.innerHTML = '<span style="color: green;">Congratulations! You have passed!</span>';
+  }
+
+  // Append SGPA and Supplementary Results to the SGPA Container
+  sgpaContainer.appendChild(sgpaResult);
+  sgpaContainer.appendChild(supplementaryResult);
+  */
+
+  // Calculate and display Total Credits Obtained
+  var totalCreditsText = document.createElement('h6');
+  totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + calculateTotalCredits(studentData) + ' / 4.0</span>';
+  totalCreditsContainer.appendChild(totalCreditsText);
+
+  // Append the Total Credits Container to the SGPA Container
+  sgpaContainer.appendChild(totalCreditsContainer);
+
+  document.getElementById('student-id').focus();
+}
+
+function calculateTotalCredits(studentData) {
+  var totalCredits = 0;
+
+  for (var i = 0; i < studentData.length; i++) {
+    var credits = parseFloat(studentData[i].Credits);
+    totalCredits += credits;
+  }
+
+  return totalCredits.toFixed(1);
+}
+
+ function handleKeyPress(event) {
+      	if (event.keyCode === 13) { // 13 represents the Enter key
+        	displayResults();
+      	}
+    	}
+
+    	// Add event listener to input element
+    	document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
+
+function printResults() {
+  var printContents = document.querySelector('.container').innerHTML;
+  var originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = printContents;
+  window.print();
+
+  document.body.innerHTML = originalContents;
+}
