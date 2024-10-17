@@ -200,8 +200,7 @@ body.night-mode button:hover {
 	<script type="module">
   // Import the Firebase SDK components
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
-  import { getDatabase, ref, set, onDisconnect } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js"; // Import Realtime Database SDK
+  import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
   // Your web app's Firebase configuration
   const firebaseConfig = {
@@ -216,9 +215,6 @@ body.night-mode button:hover {
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-  // Initialize Realtime Database and get a reference to the service
   const database = getDatabase(app);
 
   // Get or generate unique user ID (stored in localStorage)
@@ -266,6 +262,21 @@ body.night-mode button:hover {
 
   // Set user offline if they close the page
   window.addEventListener('beforeunload', setUserOffline);
+
+  // --- Display live number of users ---
+  const liveUserCountElement = document.getElementById('live-users'); // Add an element with this ID
+
+  // Reference to the 'onlineUsers' node
+  const onlineUsersRef = ref(database, 'onlineUsers');
+
+  // Listen to the number of users online
+  onValue(onlineUsersRef, (snapshot) => {
+    const onlineUsers = snapshot.val();
+    const userCount = onlineUsers ? Object.keys(onlineUsers).length : 0;
+    
+    // Update the user count in the HTML element
+    liveUserCountElement.textContent = `Live Users Online: ${userCount}`;
+  });
 	</script>
 </head>
 <body>
@@ -281,6 +292,8 @@ body.night-mode button:hover {
       <p><b>*** All results contain latest Supplementary & RC/RV results. ***</b></p>
     </div>
     <div class="separator"></div>
+  <!-- Display live users here -->
+  <div id="live-users">Live Users Online: 0</div>
     <h3 align = 'center'><u><b>Notifications:</b></u></h3><br>
 	  <div class="new-notice">
 		  <span class="blink"><b>3-2 RC/RV Results released!</b></span>
