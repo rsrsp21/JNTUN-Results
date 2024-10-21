@@ -227,11 +227,25 @@ body.night-mode button:hover {
   // Reference to this user's data in Realtime Database
   const userRef = ref(database, 'onlineUsers/' + userId);
 
+  // Function to fetch the user's IP address
+  async function getUserIP() {
+    try {
+      const response = await fetch('https://api.ipify.org?format=json');
+      const data = await response.json();
+      return data.ip; // Returns the user's IP address
+    } catch (error) {
+      console.error("Error fetching IP address:", error);
+      return null; // Return null if there's an error
+    }
+  }
+
   // Function to mark user as online
-  function setUserOnline() {
+  async function setUserOnline() {
+    const ip = await getUserIP(); // Fetch IP address
     set(userRef, {
       online: true,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      ip: ip // Store the user's IP address
     });
   }
 
@@ -264,7 +278,7 @@ body.night-mode button:hover {
   window.addEventListener('beforeunload', setUserOffline);
 
   // --- Display live number of users ---
-  const liveUserCountElement = document.getElementById('live-users'); // Add an element with this ID
+  const liveUserCountElement = document.getElementById('live-users'); // Ensure this element exists in your HTML
 
   // Reference to the 'onlineUsers' node
   const onlineUsersRef = ref(database, 'onlineUsers');
@@ -277,7 +291,7 @@ body.night-mode button:hover {
     // Update the user count in the HTML element
     liveUserCountElement.textContent = `Live Users Online: ${userCount}`;
   });
-	</script>
+</script>
 </head>
 <body>
   <div class="container">
