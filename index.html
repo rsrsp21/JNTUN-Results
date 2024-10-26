@@ -4,257 +4,67 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JNTUK UCEN Results Portal (2021 Admitted Onwards)</title>
-  <link rel="shortcut icon" href="images/favicon.ico" />
-  <style>
-    * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333333;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-body.night-mode {
-  background-color: #333333;
-  color: #f4f4f4;
-}
-
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
-  width: 100%;
-  margin: auto;
-}
-
-.container.night-mode {
-  background-color: #222222;
-}
-
-h1, h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: inherit;
-}
-
-.logo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.logo img {
-  width: 700px;
-  height: auto;
-}
-
-.imp_list, .note_list {
-  list-style: none;
-  padding: 0;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.imp_list li, .note_list li {
-  margin-bottom: 10px;
-}
-
-.imp_list li a, .note_list li a {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: green;
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.note_list li a {
-  background-color: #990066;
-}
-
-.imp_list li a:hover, .note_list li a:hover {
-  background-color: #006400;
-}
-
-.note_list li a:hover {
-  background-color: #993366;
-}
-
-.new-indicator {
-  display: inline-block;
-  margin-left: 5px;
-  vertical-align: middle;
-  animation: blink 1s infinite;
-}
-
-.new-notice {
-  text-align: center;
-  margin-bottom: 10px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.scroll-notice {
-  background-color: #f7f7f7;
-  padding: 10px;
-  overflow: hidden;
-  white-space: nowrap;
-  color: #333333;
-  transition: color 0.3s ease;
-}
-
-.scroll-notice p {
-  animation: scroll-anim 12s linear infinite;
-  display: inline-block;
-}
-
-@keyframes scroll-anim {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-.separator {
-  border-top: 1px solid #dddddd;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.footer {
-  text-align: center;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #dddddd;
-}
-
-/* Night Mode Styling */
-
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #333333;
-  color: #ffffff;
-  text-decoration: none;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #444444;
-}
-
-body.night-mode button {
-  background-color: #ffffff;
-  color: #333333;
-}
-
-body.night-mode button:hover {
-  background-color: #dddddd;
-}
-
-.scroll-notice.night-mode {
-  background-color: #333333;
-  color: #f4f4f4;
-}
-
-.scroll-notice.night-mode p {
-  color: #f4f4f4;
-}
-    .footer {
-      text-align: center;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #dddddd;
-    }
-
-    @media (max-width: 700px) {
-      .logo img {
-        width: 375px;
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> 
+    <script type="module" src="firebase-setup.js"></script>
+  <body class="bg-gray-50 text-gray-900 transition duration-300 ease-in-out">
+    <div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10 transition-all duration-300 ease-in-out">
+      <div class="text-center mb-6">
+        <a href="https://jntunresults.vercel.app/">
+          <img src="images/logo.png" alt="University Logo" class="w-full h-auto mx-auto">
+        </a>
+      </div>
+      <h1 class="text-3xl font-bold text-blue-600 mb-2">Results Portal</h1>
+      <h2 class="text-xl text-gray-600 mb-4">(2021 Admitted Onwards)</h2>
+      <div class="bg-blue-100 p-4 rounded-lg mb-4 overflow-hidden relative">
+        <div class="whitespace-nowrap animate-scroll">
+          <p class="font-semibold">*** All results contain latest Supplementary & RC/RV results. ***</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-300 my-4"></div>
+      <div id="live-users" class="text-center mb-4">Live Users Online: <span class="font-bold">0</span></div>
+      <h3 class="text-xl font-semibold text-center mb-4"><u>Notifications:</u></h3>
+      <style>
+        @keyframes fast-blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      </style>
+      <div class="text-center mb-4">
+          <span class="text-red-800 font-bold text-lg" style="animation: fast-blink 1s infinite;">3-2 RC/RV Results released!</span>
+      </div>
+      <p class="text-center mb-4"><a href="notifications/notify.html" class="text-blue-500 hover:underline">more...</a></p>
+      <h3 class="text-xl font-semibold text-center mb-4"><u>Candidate Activity:</u></h3>
+      <ul class="list-none p-0 text-center space-y-2 mb-6">
+        <li><a href="2023_Results/2023_Portal.html" class="block mx-auto max-w-xs rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-2 px-4 transition duration-300 ease-in-out hover:from-blue-400 hover:to-blue-500 shadow-md transform hover:scale-105">2023-27 Batch Results<br>(Updated up to 1-2)</a></li>
+        <li><a href="2022_Results/2022_Portal.html" class="block mx-auto max-w-xs rounded-lg bg-gradient-to-r from-green-500 to-green-600 text-white font-bold py-2 px-4 transition duration-300 ease-in-out hover:from-green-400 hover:to-green-500 shadow-md transform hover:scale-105">2022-26 Batch Results<br>(Updated up to 2-2)</a></li>
+        <li><a href="2021_Results/2021_Portal.html" class="block mx-auto max-w-xs rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold py-2 px-4 transition duration-300 ease-in-out hover:from-purple-400 hover:to-purple-500 shadow-md transform hover:scale-105">2021-25 Batch Results<br>(Updated up to 3-2)</a></li>
+      </ul>
+      <p class="text-center mb-4"><b>If you find any errors/issues in your results, please contact <a href="mailto:rsrsp21@gmail.com" class="text-blue-500 hover:underline">rsrsp21@gmail.com</a></b></p>
+      <!-- <div class="text-center">
+        <button onclick="toggleNightMode()" class="px-5 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-600 transition">Night Mode</button>
+      </div> -->
+      <div class="text-center mt-6 border-t border-gray-300 pt-4">
+        <p>&copy; Created by Sri Ram Sai Pavan Relangi, 2023</p>
+      </div>
+    </div>
+    <style>
+      @keyframes scroll {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
       }
-    }
-  </style>
-	<script type="module" src="firebase-setup.js"></script>
-</head>
-<body>
-  <div class="container">
-
-    <div class="logo">
-      <a href="https://jntunresults.vercel.app/"><img src="images/logo.png" alt="University Logo"></a>
-    </div>
-    <div class="separator"></div>
-    <h1>Results Portal</h1>
-    <h2>(2021 Admitted Onwards)</h2>
-    <div class="scroll-notice">
-      <p><b>*** All results contain latest Supplementary & RC/RV results. ***</b></p>
-    </div>
-    <div class="separator"></div>
-  <!-- Display live users here -->
-  <div id="live-users">Live Users Online: 0</div>
-    <h3 align = 'center'><u><b>Notifications:</b></u></h3><br>
-	  <div class="new-notice">
-		  <span class="blink"><b>3-2 RC/RV Results released!</b></span>
-    </div><!--<span class="new-indicator"><img src="../images/new.png" alt="New" style="width: 30px; height: auto;"></span>-->
-	 <p align='center'><!--<b>2-2 (Regular), 2-1, 1-1 & 1-2 (Supplementary) Results will be released in September,2023.</b><!--<span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: auto;"></span></p>
-	  <br><p align='center'>-->
-	<!--<a href="../files/3-1PASSR20(2021).pdf" target="_blank" download><b>III B.TECH. I SEMESTER REGULAR SUBJECTWISE PASS PERCENTAGE</b></a>
-		 <br>-->
-	 <a href="../notifications/notify.html">more...</a>
-	  </p>
-<br>
-<h3 align = 'center'><b><u>Candidate Activity:</u></b></h3><br>
-    <!--<p align="center"><b><a href="2021_Results/3_1-2021.html">Click here</a> to check 3-1(Regular) Dec-2023 Result!</b></p>
-    <br>--><div>
-      <ul class="imp_list">
-        <li><a href="2023_Results/2023_Portal.html">2023-27 Batch Results<br>(Updated upto 1-2)</a></li>
-        <li><a href="2022_Results/2022_Portal.html">2022-26 Batch Results<br>(Updated upto 2-2)</a></li>
-        <li><a href="2021_Results/2021_Portal.html">2021-25 Batch Results<br>(Updated upto 3-2)</a></li>
-        <!--<li><a href="2020_Results/2020_Portal.html">2020-24 Batch Results<br>(Only 3-2)</a></li>-->
-      </ul>
-    </div>
-   <!-- <div>
-      <ul class="note_list">
-        <li><a href="Semesterwise_Results/semesterwise_results.html">Semesterwise Results<br>(All Years)</a></li>
-        <li><a href="Honors_books/honors_books_cse.html">B.Tech. (Honors) Textbooks<br>(Only CSE)</a></li>
-      </ul>
-    </div>-->
-    <div>
-      <p align="center"><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p><br>
-    <p align = 'center'><button onclick="toggleNightMode()">Night Mode</button></p>
-    </div>
-    <div class="footer">
-      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
-    </div>
-  </div>
-  <script>
-    function toggleNightMode() {
-      document.body.classList.toggle('night-mode');
-      document.querySelector('.container').classList.toggle('night-mode');
-    }
-  </script>
-</body>
+      .animate-scroll {
+        animation: scroll 10s linear infinite;
+      }
+    </style>
+    <!-- <script>
+      function toggleNightMode() {
+        document.body.classList.toggle('bg-gray-900');
+        document.body.classList.toggle('text-gray-300');
+        const container = document.querySelector('.container');
+        container.classList.toggle('bg-gray-800');
+        container.classList.toggle('text-gray-300');
+      }
+    </script> -->
+  </body>
 </html>
 
