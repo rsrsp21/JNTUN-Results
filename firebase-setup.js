@@ -3,17 +3,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
 
-const auth = getAuth();
-signInAnonymously(auth)
-  .then(() => {
-    console.log("User signed in anonymously");
-    setUserOnline(); // Set user online after authentication
-  })
-  .catch((error) => {
-    console.error("Authentication failed:", error);
-  });
-
-
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyAHBHb5Fm1gIn1K46FpPG242xxllEMDFQU",
@@ -28,6 +17,17 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app); // Initialize Auth after app
+
+// Sign in the user anonymously
+signInAnonymously(auth)
+  .then(() => {
+    console.log("User signed in anonymously");
+    setUserOnline(); // Set user online after authentication
+  })
+  .catch((error) => {
+    console.error("Authentication failed:", error);
+  });
 
 // Get or generate unique user ID (stored in localStorage)
 let userId = localStorage.getItem('userId');
