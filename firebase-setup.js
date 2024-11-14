@@ -91,7 +91,7 @@ window.addEventListener('beforeunload', setUserOffline);
 
 // Reference to the 'onlineUsers' node
 const liveUserCountElement = document.getElementById('live-users');
-liveUserCountElement.textContent = '<b>Loading...</b>'; // Display loading message initially
+liveUserCountElement.textContent = 'Loading...'; // Display loading message initially
 
 const onlineUsersRef = ref(database, 'onlineUsers');
 
@@ -101,7 +101,7 @@ get(onlineUsersRef).then((snapshot) => {
   const userCount = onlineUsers ? Object.keys(onlineUsers).length : 0;
 
   // Set the initial user count in the UI
-  liveUserCountElement.textContent = `Live Users Online: <b>${userCount}</b>`;
+  liveUserCountElement.textContent = `Live Users Online: ${userCount}`;
 });
 
 // 2. Set up the real-time listener to update the count as users come and go
@@ -110,5 +110,5 @@ onValue(onlineUsersRef, (snapshot) => {
   const userCount = onlineUsers ? Object.keys(onlineUsers).length : 0;
 
   // Dynamically update the user count
-  liveUserCountElement.textContent = `Live Users Online: <b>${userCount}</b>`;
+  liveUserCountElement.textContent = `Live Users Online: ${userCount}`;
 });
