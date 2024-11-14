@@ -89,17 +89,26 @@ resetInactivityTimer(); // Start the timer when page loads
 // Set user offline if they close the page
 window.addEventListener('beforeunload', setUserOffline);
 
-// --- Display live number of users ---
-const liveUserCountElement = document.getElementById('live-users'); // Ensure this element exists in your HTML
-
 // Reference to the 'onlineUsers' node
+const liveUserCountElement = document.getElementById('live-users');
+liveUserCountElement.textContent = '<b>Loading...</b>'; // Display loading message initially
+
 const onlineUsersRef = ref(database, 'onlineUsers');
 
-// Listen to the number of users online
+// 1. Fetch the initial value once to avoid the 0 count initially
+get(onlineUsersRef).then((snapshot) => {
+  const onlineUsers = snapshot.val();
+  const userCount = onlineUsers ? Object.keys(onlineUsers).length : 0;
+
+  // Set the initial user count in the UI
+  liveUserCountElement.textContent = `Live Users Online: <b>${userCount}</b>`;
+});
+
+// 2. Set up the real-time listener to update the count as users come and go
 onValue(onlineUsersRef, (snapshot) => {
   const onlineUsers = snapshot.val();
   const userCount = onlineUsers ? Object.keys(onlineUsers).length : 0;
-  
-  // Update the user count in the HTML element
-  liveUserCountElement.textContent = `Live Users Online: ${userCount}`;
+
+  // Dynamically update the user count
+  liveUserCountElement.textContent = `Live Users Online: <b>${userCount}</b>`;
 });
