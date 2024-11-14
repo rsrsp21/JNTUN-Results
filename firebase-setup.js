@@ -1,6 +1,18 @@
 // Import the Firebase SDK components
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
 import { getDatabase, ref, set, onDisconnect, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+const auth = getAuth();
+signInAnonymously(auth)
+  .then(() => {
+    console.log("User signed in anonymously");
+    setUserOnline(); // Set user online after authentication
+  })
+  .catch((error) => {
+    console.error("Authentication failed:", error);
+  });
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
