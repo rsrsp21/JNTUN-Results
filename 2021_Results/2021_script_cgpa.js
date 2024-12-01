@@ -1,4 +1,4 @@
-/*var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-2,3-1,Credits_3-1,3-2,Credits_3-2,Total Credits,CGPA,Supplementary Appearances
+var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-2,3-1,Credits_3-1,3-2,Credits_3-2,Total Credits,CGPA,Supplementary Appearances
 21031A0101,0.0,13.5,0.0,13.5,0.0,20.5,0.0,12.5,0.0,15.5,0.0,3.0,78.5,0.0,***************
 21031A0102,7.13,19.5,5.77,19.5,6.77,23.5,6.47,21.5,7.26,21.5,6.98,21.5,127.0,6.74,*******
 21031A0103,7.13,19.5,6.69,19.5,8.17,23.5,7.14,21.5,7.33,21.5,7.28,21.5,127.0,7.32,
@@ -338,22 +338,22 @@
 22035A0508,,,,,6.85,23.5,6.23,21.5,7.28,21.5,7.72,21.5,88.0,7.02,
 22035A0509,,,,,0.0,20.5,5.81,21.5,6.0,21.5,6.67,21.5,85.0,0.0,****
 22035A0510,,,,,0.0,20.5,6.05,21.5,7.49,21.5,7.35,21.5,85.0,0.0,****`;
-*/
 
-var apiUrl = "https://sheets.googleapis.com/v4/spreadsheets/1o6v7uU1gh4t4ia6C0ShW9fsb9npmzQX8i40Vz60TqRk/values/Sheet1!A1:P340?key=AIzaSyA1YQ2nZU8fO1B1gZGoAGlS1G7ZE51dgQg";
 
-function fetchSheetData(callback) {
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            // Parse Google Sheets data into CSV-like format
-            var csvRows = data.values.map(row => row.join(",")).join("\n");
-            callback(csvRows); // Pass the CSV-like string to the callback
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
-}
+// var apiUrl = "https://sheets.googleapis.com/v4/spreadsheets/1o6v7uU1gh4t4ia6C0ShW9fsb9npmzQX8i40Vz60TqRk/values/Sheet1!A1:P340?key=AIzaSyA1YQ2nZU8fO1B1gZGoAGlS1G7ZE51dgQg";
+
+// function fetchSheetData(callback) {
+//     fetch(apiUrl)
+//         .then(response => response.json())
+//         .then(data => {
+//             // Parse Google Sheets data into CSV-like format
+//             var csvRows = data.values.map(row => row.join(",")).join("\n");
+//             callback(csvRows); // Pass the CSV-like string to the callback
+//         })
+//         .catch(error => {
+//             console.error("Error fetching data:", error);
+//         });
+// }
 
  function parseCSV(csv) {
     var lines = csv.split('\n');
@@ -375,16 +375,9 @@ function fetchSheetData(callback) {
 }
 
 function getStudentData(id, data) {
-    id = id.trim(); // Trim the input Roll Number
     var studentData = data.filter(function (entry) {
-        return entry.ID && entry.ID.trim() === id; // Ensure proper comparison
-        console.log("Parsed Data:", data);
-console.log("Input ID:", id);
-        data.forEach(entry => console.log("Entry ID:", entry.ID));
+        return entry.ID === id;
     });
-    // var studentData = data.filter(function (entry) {
-    //     return entry.ID === id;
-    // });
 
     return studentData;
 }
@@ -392,30 +385,18 @@ console.log("Input ID:", id);
 var message = ''; // Declare the message variable outside the function
 
 function displayResults() {
-    // var studentId = document.getElementById('student-id').value.trim();
-    // if (!studentId) {
-    //     alert('Please enter a valid Roll Number.');
-    //     return;
-    // }
  var studentId = document.getElementById('student-id').value.trim();
     if (!studentId) {
         alert('Please enter a valid Roll Number.');
         return;
     }
-
-    fetchSheetData(function (csvData) {
-        var studentData = getStudentData(studentId, parseCSV(csvData));
-        if (studentData.length === 0) {
-            alert('No data found for the given Roll Number.');
-            return;
-        }
  var branch = getEngineeringBranch(studentId.charAt(7));
 
-    // var studentData = getStudentData(studentId, parseCSV(csvData));
-    // if (studentData.length === 0) {
-    //     alert('No data found for the given Roll Number.');
-    //     return;
-    // }
+    var studentData = getStudentData(studentId, parseCSV(csvData));
+    if (studentData.length === 0) {
+        alert('No data found for the given Roll Number.');
+        return;
+    }
 
     var idContainer = document.getElementById('id-container');
     idContainer.innerHTML = '';
@@ -566,7 +547,6 @@ supplementaryValue.textContent = supplementaryAppearances || 'NA';
 
 supplementaryHeading.appendChild(supplementaryValue);
 supplementaryContainer.appendChild(supplementaryHeading);
-    });
 }
 function getEngineeringBranch(branchCode) {
     switch (branchCode) {
