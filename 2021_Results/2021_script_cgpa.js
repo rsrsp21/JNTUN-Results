@@ -378,6 +378,8 @@ function getStudentData(id, data) {
     id = id.trim(); // Trim the input Roll Number
     var studentData = data.filter(function (entry) {
         return entry.ID && entry.ID.trim() === id; // Ensure proper comparison
+        console.log("Parsed Data:", data);
+console.log("Input ID:", id);
         data.forEach(entry => console.log("Entry ID:", entry.ID));
     });
     // var studentData = data.filter(function (entry) {
@@ -600,6 +602,4 @@ function handleKeyPress(event) {
 
             document.body.innerHTML = originalContents;
         }
-console.log("Parsed Data:", data);
-console.log("Input ID:", id);
 
