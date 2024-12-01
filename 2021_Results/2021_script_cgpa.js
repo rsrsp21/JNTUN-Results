@@ -559,6 +559,7 @@ supplementaryValue.textContent = supplementaryAppearances || 'NA';
 
 supplementaryHeading.appendChild(supplementaryValue);
 supplementaryContainer.appendChild(supplementaryHeading);
+    });
 }
 function getEngineeringBranch(branchCode) {
     switch (branchCode) {
