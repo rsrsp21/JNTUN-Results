@@ -375,9 +375,13 @@ function fetchSheetData(callback) {
 }
 
 function getStudentData(id, data) {
+    id = id.trim(); // Trim the input Roll Number
     var studentData = data.filter(function (entry) {
-        return entry.ID === id;
+        return entry.ID && entry.ID.trim() === id; // Ensure proper comparison
     });
+    // var studentData = data.filter(function (entry) {
+    //     return entry.ID === id;
+    // });
 
     return studentData;
 }
