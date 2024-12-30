@@ -64,8 +64,61 @@
 	 .imp_list li a:hover {
       background-color: #008080;
     }
+  .dropdown-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
 
-    .semester-list {
+  .dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .dropdown-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-button:hover {
+    background-color: #0069d9;
+  }
+
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .dropdown-menu.active {
+    display: block;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #f1f1f1;
+  }
+
+/*     .semester-list {
       list-style: none;
       padding: 0;
       text-align: center;
@@ -87,7 +140,7 @@
 
     .semester-list li a:hover {
       background-color: #0069d9;
-    }
+    } */
 
 .other-list {
       list-style: none;
@@ -275,14 +328,42 @@
 	  <ul class ='other-list'>
 		  <li><a href='honmin-2021.html'>Honors/Minors Results (Updated 3-2)</a></li>
 	  </ul></div>
-    <ul class="semester-list">
+<!--     <ul class="semester-list">
       <li><a href="3_2-2021.html">Result of III B.Tech II Semester (R20) Regular Examinations, June-2024</a></li>
 	<li><a href="3_1-2021.html">Result of III B.Tech I Semester (R20) Regular Examinations, Dec-2023<br>(Supp. Jun-2024)</a></li>    
 	<li><a href="2_2-2021.html">Result of II B.Tech II Semester (R20) Regular Examinations, July-2023<br>(Supp. Dec-2023, May-2024)<!--<span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: 20px;"></span>--></a></li>
-      <li><a href="2_1-2021.html">Result of II B.Tech I Semester (R20) Regular Examinations, Jan-2023<br>(Supp. Jul-2023, Dec-2023, May-2024)</a></li>
+     <!-- <li><a href="2_1-2021.html">Result of II B.Tech I Semester (R20) Regular Examinations, Jan-2023<br>(Supp. Jul-2023, Dec-2023, May-2024)</a></li>
 	<li><a href="1_2-2021.html">Result of I B.Tech II Semester (R20) Regular Examinations, August-2022<br>(Supp. Jan-2023, Jul-2023, Jan-2024, Jul-2024)</a></li>
 	<li><a href="1_1-2021.html">Result of I B.Tech I Semester (R20) Regular Examinations, April-2022<br>(Supp. Sep-2022, Feb-2023, Jul-2023, Jan-2024, Jul-2024)</a></li>
-    </ul>
+    </ul> -->
+<div class="dropdown-container">
+  <div class="dropdown">
+    <button class="dropdown-button">Select Semester Results</button>
+    <div class="dropdown-menu">
+      <a href="3_2-2021.html">III B.Tech II Semester (June-2024)</a>
+      <a href="3_1-2021.html">III B.Tech I Semester (Dec-2023, Supp. Jun-2024)</a>
+      <a href="2_2-2021.html">II B.Tech II Semester (Jul-2023, Supp. Dec-2023, May-2024)</a>
+      <a href="2_1-2021.html">II B.Tech I Semester (Jan-2023, Supp. Jul-2023, Dec-2023, May-2024)</a>
+      <a href="1_2-2021.html">I B.Tech II Semester (Aug-2022, Supp. Jan-2023, Jul-2023, Jan-2024, Jul-2024)</a>
+      <a href="1_1-2021.html">I B.Tech I Semester (Apr-2022, Supp. Sep-2022, Feb-2023, Jul-2023, Jan-2024, Jul-2024)</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const dropdownButton = document.querySelector('.dropdown-button');
+  const dropdownMenu = document.querySelector('.dropdown-menu');
+
+  dropdownButton.addEventListener('click', () => {
+    dropdownMenu.classList.toggle('active');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+      dropdownMenu.classList.remove('active');
+    }
+  });
+</script>
  <div>
       <p align = 'center'><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p>
     </div>
