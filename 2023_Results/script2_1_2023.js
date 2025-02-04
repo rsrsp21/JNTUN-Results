@@ -3160,12 +3160,9 @@ var studentId = document.getElementById('student-id').value.trim();
 var totalCreditsObtained = calculateTotalCredits(studentData);
 
 // Check if the 8th digit of the ID is 4 and adjust total credits accordingly
-if (studentId && (studentId.charAt(7) === '1' || studentId.charAt(7) === '3' || studentId.charAt(7) === '4')) {
-    totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + totalCreditsObtained + ' / 20.5</span>';
-} else {
-    totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + totalCreditsObtained + ' / 19.5</span>';
+if (studentId) {
+    totalCreditsText.innerHTML = '<span style="color: black; font-weight: bold;">Total Credits Obtained: </span><span style="color: red; font-weight: bold;">' + totalCreditsObtained + ' / 20</span>';
 }
-
 totalCreditsContainer.appendChild(totalCreditsText);
 
   // Append the Total Credits Container to the SGPA Container
