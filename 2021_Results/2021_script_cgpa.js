@@ -1,4 +1,4 @@
-var csvData = `ID,CGPA_1,Credits_1,CGPA_2,Credits_2,CGPA_3,Credits_3,CGPA_4,Credits_4,CGPA_5,Credits_5,CGPA_6,Credits_6,Total Credits,Average CGPA,Supplementary Appearances
+var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-2,3-1,Credits_3-1,3-2,Credits_3-2,Total Credits,CGPA,Supplementary Appearances
 21031A0101,0.0,13.5,0.0,13.5,0.0,22.5,0.0,12.5,0.0,15.5,0.0,3.0,80.5,0.0,****************
 21031A0102,7.13,19.5,5.77,19.5,6.94,25.5,6.47,21.5,7.26,21.5,6.98,21.5,129.0,6.77,*******
 21031A0103,7.13,19.5,6.69,19.5,8.24,25.5,7.14,21.5,7.33,21.5,7.28,21.5,129.0,7.34,
