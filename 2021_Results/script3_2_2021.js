@@ -3269,7 +3269,8 @@ var grades = {
     'F': 'Fail',
     'COMPLE': 0,
   'ABSENT': 'Fail',
-  'AB': 'Fail'
+  'AB': 'Fail',
+  'NOT CO': 0
   };
 
   function parseCSV(csv) {

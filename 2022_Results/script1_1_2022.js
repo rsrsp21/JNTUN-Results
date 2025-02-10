@@ -1429,7 +1429,8 @@ var csvData = `ID,Subject Code,Subject Name,Grade,Credits
       'E': 5,
       'F': 'Fail',
       'COMPLE': 0,
-	'ABSENT': 'Fail'
+	'ABSENT': 'Fail',
+  'NOT CO': 0
     };
 
     function parseCSV(csv) {
