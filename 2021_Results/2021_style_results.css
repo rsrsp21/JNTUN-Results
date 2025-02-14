@@ -176,7 +176,7 @@ tr:hover td {
 }
 @media (max-width: 768px) {
   th, td {
-    font-size: 14px; /* Adjust the font size as needed for mobile devices */
+    font-size: 12px; /* Adjust the font size as needed for mobile devices */
     white-space: normal;
     max-width: none;
     overflow: visible;
