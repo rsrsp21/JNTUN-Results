@@ -355,7 +355,7 @@ var csvData = `ID,1-1,Credits_1-1,1-2,Credits_1-2,2-1,Credits_2-1,2-2,Credits_2-
 //         });
 // }
 
-function parseCSV(csv) {
+ function parseCSV(csv) {
     var lines = csv.split('\n');
     var headers = lines[0].split(',');
 
@@ -385,12 +385,12 @@ function getStudentData(id, data) {
 var message = ''; // Declare the message variable outside the function
 
 function displayResults() {
-    var studentId = document.getElementById('student-id').value.trim();
+ var studentId = document.getElementById('student-id').value.trim();
     if (!studentId) {
         alert('Please enter a valid Roll Number.');
         return;
     }
-    var branch = getEngineeringBranch(studentId.charAt(7));
+ var branch = getEngineeringBranch(studentId.charAt(7));
 
     var studentData = getStudentData(studentId, parseCSV(csvData));
     if (studentData.length === 0) {
@@ -402,41 +402,34 @@ function displayResults() {
     idContainer.innerHTML = '';
 
     var idHeading = document.createElement('h3');
-    idHeading.className = 'text-2xl font-bold text-black';
-    idHeading.innerHTML = '<span class="font-bold text-black">Roll Number: </span><span class="font-bold text-red-500">' + studentId + '</span>';
+    idHeading.innerHTML = '<span style="color: black; font-weight: bold">Roll Number: </span><span style="color: red; font-weight: bold">' + studentId + '</span>';
     idContainer.appendChild(idHeading);
 
-    var branchHeading = document.createElement('h3');
-    branchHeading.className = 'text-2xl font-bold text-blue-500';
-    branchHeading.innerHTML = '<span class="font-bold text-blue-500 ml-2">Branch: </span><span class="font-bold text-green-500">' + branch + '</span>';
-    idContainer.appendChild(branchHeading);
+ var idHeading = document.createElement('h3');
+    idHeading.innerHTML = '<span style="color: blue; font-weight: bold; margin-left: 10px">Branch: </span><span style="color: green; font-weight: bold">' + branch + '</span>';
+    idContainer.appendChild(idHeading);
 
     var tableContainer = document.getElementById('table-container');
     tableContainer.innerHTML = '';
 
     var table = document.createElement('table');
-    table.className = 'table-auto w-full text-left whitespace-no-wrap';
     tableContainer.appendChild(table);
 
     var tableHeader = document.createElement('thead');
-    tableHeader.className = 'bg-gray-100';
     table.appendChild(tableHeader);
 
     var headerRow = document.createElement('tr');
     tableHeader.appendChild(headerRow);
 
     var semestersHeader = document.createElement('th');
-    semestersHeader.className = 'px-4 py-2 font-bold border border-gray-300';
     semestersHeader.textContent = "Semesters";
     headerRow.appendChild(semestersHeader);
 
     var sgpaHeader = document.createElement('th');
-    sgpaHeader.className = 'px-4 py-2 font-bold border border-gray-300';
     sgpaHeader.textContent = "SGPA";
     headerRow.appendChild(sgpaHeader);
 
     var creditsHeader = document.createElement('th');
-    creditsHeader.className = 'px-4 py-2 font-bold border border-gray-300';
     creditsHeader.textContent = "Credits Obtained";
     headerRow.appendChild(creditsHeader);
 
@@ -447,17 +440,15 @@ function displayResults() {
     keys.forEach(function (key) {
         if (key !== 'ID' && key !== 'CGPA' && key !== 'Total Credits' && key !== 'Supplementary Appearances' && !key.startsWith('Credits_')) {
             var row = document.createElement('tr');
-            row.className = 'hover:bg-gray-200';
-
+            
             // Semester label
             var labelCell = document.createElement('td');
-            labelCell.className = 'px-4 py-2 font-bold border border-gray-300';
             labelCell.textContent = key;
+            labelCell.style.fontWeight = 'bold';
             row.appendChild(labelCell);
 
             // SGPA
             var sgpaCell = document.createElement('td');
-            sgpaCell.className = 'px-4 py-2 border border-gray-300';
             sgpaCell.textContent = studentData[0][key] === '' ? 'NA' : studentData[0][key];
             row.appendChild(sgpaCell);
 
@@ -467,7 +458,6 @@ function displayResults() {
 
             // Credits
             var creditsCell = document.createElement('td');
-            creditsCell.className = 'px-4 py-2 border border-gray-300';
             creditsCell.textContent = creditsValue;
             row.appendChild(creditsCell);
 
@@ -479,8 +469,7 @@ function displayResults() {
     cgpaContainer.innerHTML = '';
 
     var cgpaHeading = document.createElement('h2');
-    cgpaHeading.className = 'text-2xl font-bold text-gray-800';
-    cgpaHeading.innerHTML = '<span class="text-black">CGPA : </span><span class="text-red-500">' + studentData[0]['CGPA'] + '</span>';
+    cgpaHeading.innerHTML = '<span style="color: black; font-weight: bold">CGPA : </span><span style="color: red; font-weight: bold">' + studentData[0]['CGPA'] + '</span>';
     cgpaContainer.appendChild(cgpaHeading);
 
     var cgpa = parseFloat(studentData[0]['CGPA']);
@@ -503,23 +492,25 @@ function displayResults() {
 
     if (message !== '') {
         var messageElement = document.createElement('h3');
-        messageElement.className = 'text-xl font-bold text-green-500';
         messageElement.textContent = message;
+        messageElement.style.color = 'green';
+        messageElement.style.fontWeight = 'bold';
         messageContainer.appendChild(messageElement);
     }
-
-    // Percentage and Total Credits Container
+ // Percentage and Total Credits Container
     var percentageTotalContainer = document.getElementById('percentage-total-container');
     percentageTotalContainer.innerHTML = '';
 
     // Percentage
     var percentageHeading = document.createElement('h3');
-    percentageHeading.className = 'text-xl font-bold text-black';
+    percentageHeading.style.color = 'black';
+    percentageHeading.style.fontWeight = 'bold';
     percentageHeading.textContent = 'Percentage: ';
 
     var cgpaValue = parseFloat(studentData[0]['CGPA']);
     var percentageValue = document.createElement('span');
-    percentageValue.className = 'text-red-500 font-bold';
+    percentageValue.style.color = 'red';
+    percentageValue.style.fontWeight = 'bold';
     var percentage = ((cgpaValue - 0.75) * 10).toFixed(2);
     percentageValue.textContent = (percentage <= 0) ? '0' : percentage;
 
@@ -528,32 +519,35 @@ function displayResults() {
 
     // Total Credits Obtained
     var totalCreditsHeading = document.createElement('h3');
-    totalCreditsHeading.className = 'text-xl font-bold text-black';
+    totalCreditsHeading.style.color = 'black';
+    totalCreditsHeading.style.fontWeight = 'bold';
     totalCreditsHeading.textContent = 'Total Credits Obtained: ';
 
     var totalCreditsValue = document.createElement('span');
-    totalCreditsValue.className = 'text-red-500 font-bold';
+    totalCreditsValue.style.color = 'red';
+    totalCreditsValue.style.fontWeight = 'bold';
     totalCreditsValue.textContent = studentData[0]['Total Credits']; // Assuming this is the field name in your CSV
 
     totalCreditsHeading.appendChild(totalCreditsValue);
     percentageTotalContainer.appendChild(totalCreditsHeading);
+ 
+var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
+var supplementaryContainer = document.getElementById('supplementary-container');
+supplementaryContainer.innerHTML = '';
 
-    var supplementaryAppearances = studentData[0]['Supplementary Appearances'];
-    var supplementaryContainer = document.getElementById('supplementary-container');
-    supplementaryContainer.innerHTML = '';
+var supplementaryHeading = document.createElement('h3');
+supplementaryHeading.style.color = 'blue';
+supplementaryHeading.style.fontWeight = 'bold';
+supplementaryHeading.textContent = 'Supplementary Appearances: ';
 
-    var supplementaryHeading = document.createElement('h3');
-    supplementaryHeading.className = 'text-xl font-bold text-blue-500';
-    supplementaryHeading.textContent = 'Supplementary Appearances: ';
+var supplementaryValue = document.createElement('span');
+supplementaryValue.style.color = 'black';
+supplementaryValue.style.fontWeight = 'bold';
+supplementaryValue.textContent = supplementaryAppearances || 'NA';
 
-    var supplementaryValue = document.createElement('span');
-    supplementaryValue.className = 'text-black font-bold';
-    supplementaryValue.textContent = supplementaryAppearances || 'NA';
-
-    supplementaryHeading.appendChild(supplementaryValue);
-    supplementaryContainer.appendChild(supplementaryHeading);
+supplementaryHeading.appendChild(supplementaryValue);
+supplementaryContainer.appendChild(supplementaryHeading);
 }
-
 function getEngineeringBranch(branchCode) {
     switch (branchCode) {
         case '1':
@@ -570,23 +564,22 @@ function getEngineeringBranch(branchCode) {
             return 'Unknown Branch';
     }
 }
-
 function handleKeyPress(event) {
     if (event.keyCode === 13) {
         // 13 represents the Enter key
         displayResults();
     }
 }
+        // Add event listener to input element
+        document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
 
-// Add event listener to input element
-document.getElementById('student-id').addEventListener('keyup', handleKeyPress);
+        function printResults() {
+            var printContents = document.querySelector('.container').innerHTML;
+            var originalContents = document.body.innerHTML;
 
-function printResults() {
-    var printContents = document.querySelector('.container').innerHTML;
-    var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
 
-    document.body.innerHTML = printContents;
-    window.print();
+            document.body.innerHTML = originalContents;
+        }
 
-    document.body.innerHTML = originalContents;
-}

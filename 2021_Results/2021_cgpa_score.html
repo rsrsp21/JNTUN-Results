@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CGPA Score (2021-25)</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="2021_style_cgpa.css">
 </head>
-<body class="bg-gray-100 font-sans leading-normal tracking-normal">
-  <div class="container mx-auto px-4 py-8">
-    <div class="flex justify-center">
-      <a href="https://jntunresults.vercel.app/">
-        <img src="../images/logo.png" alt="University Logo" class="w-24">
-      </a>
+<body>
+  <div class="container">
+    <div class="logo">
+      <a href="https://jntunresults.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
     </div>
-    <div class="my-4">
-      <h1 class="text-4xl text-center font-bold text-gray-800">CGPA Score (2021-25)</h1>
-      <h2 class="text-2xl text-center text-gray-600">Cumulative Grade Points Average Score</h2>
+    <div class="separator"></div>
+    <h1>CGPA Score (2021-25)</h1>
+    <h2>(Cumulative Grade Points Average Score)</h2>
+    <div class="blink-notice">
+      <span class="blink">*** Supplementary Results are Updated. ***</span>
     </div>
-    <div class="bg-red-500 text-white text-center py-2 rounded-lg">
-      <span class="animate-pulse">*** Supplementary Results are Updated. ***</span>
+    <div class="separator"></div>
+    <label for="student-id">Enter Roll Number:</label>
+    <br>
+    <input type="text" id="student-id">
+    <br>
+    <button onclick="displayResults()">View CGPA</button>
+    <br>
+    <div align="center" id="id-container"></div><br>
+    <div id="table-container"></div><br>
+    <div id="cgpa-container"></div>
+    <div align="center" id="message-container"></div><br>
+    <div id="percentage-total-container"></div><br>
+    <div align="center" id="supplementary-container"></div><br>
+    <div class="blink-notice">
+      <span class="blink">Note:<br>No. of * indicates Number of Supplementary Appearances.<br>NA indicates Not Applicable.</span>
     </div>
-    <div class="my-4">
-      <label for="student-id" class="block text-center text-xl font-bold text-gray-700">Enter Roll Number:</label>
-      <input type="text" id="student-id" class="w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300">
-      <button onclick="displayResults()" class="w-full px-4 py-2 mt-4 text-white bg-maroon rounded-md hover:bg-opacity-80 focus:outline-none focus:ring focus:ring-maroon focus:ring-opacity-40">View CGPA</button>
+    <div class="print-button">
+      <button onclick="printResults()">Print</button>
+    </div><br>
+    <div>
+      <button onclick="location.href='2021_Portal.html';">Back to home</button>
+    </div><br>
+    <div class="complain">
+      <p align='center'><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p>
     </div>
-    <div id="id-container" class="mt-4"></div>
-    <div id="table-container" class="mt-4"></div>
-    <div id="cgpa-container" class="mt-4"></div>
-    <div id="message-container" class="mt-4"></div>
-    <div id="percentage-total-container" class="mt-4"></div>
-    <div id="supplementary-container" class="mt-4"></div>
-    <div class="text-center mt-4">
-      <button onclick="printResults()" class="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40">Print</button>
-    </div>
-    <div class="text-center mt-4">
-      <button onclick="location.href='2021_Portal.html';" class="px-4 py-2 text-white bg-gray-500 rounded-md hover:bg-opacity-80 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40">Back to home</button>
-    </div>
-    <div class="text-center mt-4">
-      <p class="text-lg font-bold text-gray-700">If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com" class="text-blue-500 hover:underline">rsrsp21@gmail.com</a></p>
-    </div>
-    <div class="text-center mt-4">
-      <p class="text-gray-500">&copy; Created By Sri Ram Sai Pavan Relangi, 2023</p>
+    <div class="footer">
+      <p>&copy; Created By Sri Ram Sai Pavan Relangi, 2023</p>
     </div>
   </div>
   <script src="2021_script_cgpa.js"></script>
