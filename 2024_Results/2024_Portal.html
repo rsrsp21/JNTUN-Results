@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R23 (2024-28) Results Portal</title>
+<link rel = "shortcut icon" href="../images/favicon.ico" />
+<!--     <script type="module" src="../firebase-setup.js"></script> -->
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      width: 700px;
+      height: auto;
+    }
+
+     .imp_list {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .imp_list li {
+      margin-bottom: 10px;
+    }
+
+    .imp_list li a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #008B8B;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+	 .imp_list li a:hover {
+      background-color: #008080;
+    }
+
+    .semester-list {
+      list-style: none;
+      padding: 0;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .semester-list li {
+      margin-bottom: 10px;
+    }
+
+    .semester-list li a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .semester-list li a:hover {
+      background-color: #0069d9;
+    }
+	.new-indicator {
+      display: inline-block;
+      margin-left: 5px;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+
+.new-notice {
+      text-align: center;
+      margin-bottom: 10px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+.scroll-notice {
+  background-color: #f7f7f7;
+  padding: 10px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scroll-notice p {
+  animation: scroll-anim 12s linear infinite;
+  display: inline-block;
+}
+
+@keyframes scroll-anim {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+	  .separator {
+      border-top: 1px solid #dddddd;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #dddddd;
+    }
+	  @media (max-width: 700px) {
+      .logo img {
+        width: 375px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <a href="https://jntunresults.vercel.app/"><img src="../images/logo.png" alt="University Logo"></a>
+    </div>
+    <!--<h1 class="university-name">University Name</h1>-->
+    <div class="separator"></div>
+	  <h1>R23 Results<br>(2024-28 Batch)</h1>
+	  <div class="scroll-notice">
+		  <p><b>*** 1-1 (Regular) Results Updated! ***</b></p>
+    </div>
+	   <div class="separator"></div>
+<!--      <div id="live-users" align="center"><b>Live Users Online: </b><span>0</span></div><br> -->
+     
+	  <br><div class="new-notice">
+		  <span class="blink"><b>1-1 (Reg) Results Updated!</b></span>
+    </div>
+	  <br>
+	<!--<p align='center'><a href="2-2_Mid-2_TT.jpg" target="_blank" download>Download 2-2 Mid-2 TimeTable <span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: 20px;"></span></a></p><br>
+	  <p align='center'>
+	<a href="../files/1-2_pass_percent_2022.pdf" target="_blank" download><b>I B.TECH. II SEMESTER REGULAR SUBJECTWISE PASS PERCENTAGE</b></a>
+		  <br>-->
+<br>
+	  <div>
+	  <ul class ='imp_list'>
+	  <li><a href='2024_cgpa_score.html'>CGPA Score <span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: 20px;"></span><br>(Updated upto 1-1)</a></li>
+	   <li><a href='2024_Toppers_List.html'>Toppers List<br>(Updated upto 1-1)</a></li>
+	  </ul></div>
+    <ul class="semester-list">
+  	    <li><a href="1_1-2024.html">Result of I B.Tech I Semester (R23) Regular Examinations, Jan-2024 <span class="gif-notice"><img src="../images/NewGIF.gif" alt="New" style="width: 30px; height: 20px;"></span></a></li>
+      <!-- Add more semester result links as needed -->
+    </ul>
+ <div>
+      <p align = 'center'><b>If you find any errors / issues in your results, please contact <a href="mailto:rsrsp21@gmail.com">rsrsp21@gmail.com</a></b></p>
+    </div>
+    <div class="footer">
+      &copy; Created by Sri Ram Sai Pavan Relangi, 2023
+    </div>
+  </div>
+</body>
+</html>
